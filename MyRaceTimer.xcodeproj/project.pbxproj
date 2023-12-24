@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		173E5FE12B37E881007DC23B /* RecordingListModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FDD2B37E881007DC23B /* RecordingListModel+CoreDataClass.swift */; };
+		173E5FE22B37E881007DC23B /* RecordingListModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FDE2B37E881007DC23B /* RecordingListModel+CoreDataProperties.swift */; };
+		173E5FE32B37E881007DC23B /* RecordingModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FDF2B37E881007DC23B /* RecordingModel+CoreDataClass.swift */; };
+		173E5FE42B37E881007DC23B /* RecordingModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FE02B37E881007DC23B /* RecordingModel+CoreDataProperties.swift */; };
+		173E5FE82B37E9E3007DC23B /* RecordingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FE72B37E9E3007DC23B /* RecordingList.swift */; };
 		173EC3762B34EA2D006E476D /* MyRaceTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */; };
 		173EC3782B34EA2D006E476D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3772B34EA2D006E476D /* ContentView.swift */; };
 		173EC37A2B34EA2F006E476D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173EC3792B34EA2F006E476D /* Assets.xcassets */; };
 		173EC37E2B34EA2F006E476D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173EC37D2B34EA2F006E476D /* Preview Assets.xcassets */; };
-		173EC3882B34EA2F006E476D /* MyRaceTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3872B34EA2F006E476D /* MyRaceTimerTests.swift */; };
 		173EC3922B34EA2F006E476D /* MyRaceTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3912B34EA2F006E476D /* MyRaceTimerUITests.swift */; };
 		173EC3942B34EA2F006E476D /* MyRaceTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3932B34EA2F006E476D /* MyRaceTimerUITestsLaunchTests.swift */; };
+		173EC3A22B34EF21006E476D /* MyRaceTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3A02B34EF21006E476D /* MyRaceTimer.xcdatamodeld */; };
+		173EC3A42B34EFAE006E476D /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3A32B34EFAE006E476D /* PersistenceController.swift */; };
+		173EC3E42B36123F006E476D /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3E32B36123F006E476D /* Recording.swift */; };
+		173EC3E62B36A1D0006E476D /* PersistenceControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3E52B36A1D0006E476D /* PersistenceControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		173E5FDD2B37E881007DC23B /* RecordingListModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingListModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		173E5FDE2B37E881007DC23B /* RecordingListModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingListModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		173E5FDF2B37E881007DC23B /* RecordingModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		173E5FE02B37E881007DC23B /* RecordingModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		173E5FE72B37E9E3007DC23B /* RecordingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingList.swift; sourceTree = "<group>"; };
 		173EC3722B34EA2D006E476D /* MyRaceTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyRaceTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerApp.swift; sourceTree = "<group>"; };
 		173EC3772B34EA2D006E476D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -41,10 +54,13 @@
 		173EC37B2B34EA2F006E476D /* MyRaceTimer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyRaceTimer.entitlements; sourceTree = "<group>"; };
 		173EC37D2B34EA2F006E476D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		173EC3832B34EA2F006E476D /* MyRaceTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyRaceTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		173EC3872B34EA2F006E476D /* MyRaceTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerTests.swift; sourceTree = "<group>"; };
 		173EC38D2B34EA2F006E476D /* MyRaceTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyRaceTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		173EC3912B34EA2F006E476D /* MyRaceTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerUITests.swift; sourceTree = "<group>"; };
 		173EC3932B34EA2F006E476D /* MyRaceTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		173EC3A12B34EF21006E476D /* MyRaceTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyRaceTimer.xcdatamodel; sourceTree = "<group>"; };
+		173EC3A32B34EFAE006E476D /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		173EC3E32B36123F006E476D /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
+		173EC3E52B36A1D0006E476D /* PersistenceControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +88,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		173E5FE52B37E894007DC23B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				173E5FE62B37E8A5007DC23B /* Models */,
+				173EC3A02B34EF21006E476D /* MyRaceTimer.xcdatamodeld */,
+				173EC3A32B34EFAE006E476D /* PersistenceController.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		173E5FE62B37E8A5007DC23B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				173E5FDD2B37E881007DC23B /* RecordingListModel+CoreDataClass.swift */,
+				173E5FDE2B37E881007DC23B /* RecordingListModel+CoreDataProperties.swift */,
+				173E5FDF2B37E881007DC23B /* RecordingModel+CoreDataClass.swift */,
+				173E5FE02B37E881007DC23B /* RecordingModel+CoreDataProperties.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		173EC3692B34EA2D006E476D = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +134,9 @@
 			children = (
 				173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */,
 				173EC3772B34EA2D006E476D /* ContentView.swift */,
+				173E5FE52B37E894007DC23B /* CoreData */,
+				173EC3E32B36123F006E476D /* Recording.swift */,
+				173E5FE72B37E9E3007DC23B /* RecordingList.swift */,
 				173EC3792B34EA2F006E476D /* Assets.xcassets */,
 				173EC37B2B34EA2F006E476D /* MyRaceTimer.entitlements */,
 				173EC37C2B34EA2F006E476D /* Preview Content */,
@@ -115,7 +155,7 @@
 		173EC3862B34EA2F006E476D /* MyRaceTimerTests */ = {
 			isa = PBXGroup;
 			children = (
-				173EC3872B34EA2F006E476D /* MyRaceTimerTests.swift */,
+				173EC3E52B36A1D0006E476D /* PersistenceControllerTests.swift */,
 			);
 			path = MyRaceTimerTests;
 			sourceTree = "<group>";
@@ -259,8 +299,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				173EC3E42B36123F006E476D /* Recording.swift in Sources */,
 				173EC3782B34EA2D006E476D /* ContentView.swift in Sources */,
 				173EC3762B34EA2D006E476D /* MyRaceTimerApp.swift in Sources */,
+				173E5FE32B37E881007DC23B /* RecordingModel+CoreDataClass.swift in Sources */,
+				173EC3A22B34EF21006E476D /* MyRaceTimer.xcdatamodeld in Sources */,
+				173E5FE82B37E9E3007DC23B /* RecordingList.swift in Sources */,
+				173EC3A42B34EFAE006E476D /* PersistenceController.swift in Sources */,
+				173E5FE42B37E881007DC23B /* RecordingModel+CoreDataProperties.swift in Sources */,
+				173E5FE12B37E881007DC23B /* RecordingListModel+CoreDataClass.swift in Sources */,
+				173E5FE22B37E881007DC23B /* RecordingListModel+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				173EC3882B34EA2F006E476D /* MyRaceTimerTests.swift in Sources */,
+				173EC3E62B36A1D0006E476D /* PersistenceControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +665,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		173EC3A02B34EF21006E476D /* MyRaceTimer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				173EC3A12B34EF21006E476D /* MyRaceTimer.xcdatamodel */,
+			);
+			currentVersion = 173EC3A12B34EF21006E476D /* MyRaceTimer.xcdatamodel */;
+			path = MyRaceTimer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 173EC36A2B34EA2D006E476D /* Project object */;
 }
