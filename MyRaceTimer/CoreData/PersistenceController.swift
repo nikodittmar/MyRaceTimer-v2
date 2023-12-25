@@ -12,6 +12,8 @@ enum PersistenceControllerError: Error {
     case errorSaving
     case recordingListNotFound
     case recordingNotFound
+    case noLoadedRecordingListFound
+    case errorFetching
 }
 
 class PersistenceController {
@@ -38,42 +40,48 @@ class PersistenceController {
     
     func fetchLoadedRecordingList() throws -> RecordingList {
         let fetchRequest = NSFetchRequest<RecordingListModel>(entityName: "RecordingListModel")
-        fetchRequest.predicate = NSPredicate(format: "loaded == %@", true as NSNumber)
         
-        if let recordingListModel = try? container.viewContext.fetch(fetchRequest).first {
-            return RecordingList(
-                id: recordingListModel.unwrappedId,
-                name: recordingListModel.unwrappedName,
-                createdDate: recordingListModel.unwrappedCreatedDate,
-                updatedDate: recordingListModel.unwrappedUpdatedDate,
-                type: recordingListModel.unwrappedType,
-                recordings: recordingListModel.recordingsArray
-            )
-        } else {
-            throw PersistenceControllerError.recordingNotFound
+        guard let recordingListModels = try? container.viewContext.fetch(fetchRequest) else {
+            throw PersistenceControllerError.errorFetching
         }
+        
+        guard let loadedModel = recordingListModels.first(where: { $0.loaded }) else {
+            throw PersistenceControllerError.noLoadedRecordingListFound
+        }
+        
+        return RecordingList(
+            id: loadedModel.unwrappedId,
+            name: loadedModel.unwrappedName,
+            createdDate: loadedModel.unwrappedCreatedDate,
+            updatedDate: loadedModel.unwrappedUpdatedDate, 
+            type: loadedModel.unwrappedType,
+            recordings: loadedModel.recordingsArray
+        )
     }
     
     func loadRecordingList(id: UUID) throws {
-        let oldFetchRequest = NSFetchRequest<RecordingListModel>(entityName: "RecordingListModel")
-        oldFetchRequest.predicate = NSPredicate(format: "loaded == %@", true as NSNumber)
+        let fetchRequest = NSFetchRequest<RecordingListModel>(entityName: "RecordingListModel")
         
-        let newFetchRequest = NSFetchRequest<RecordingListModel>(entityName: "RecordingListModel")
-        newFetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
-        if let oldRecordingListModel = try? container.viewContext.fetch(oldFetchRequest).first,
-            let newRecordingListModel = try? container.viewContext.fetch(newFetchRequest).first {
-            oldRecordingListModel.setValue(false, forKey: "loaded")
-            newRecordingListModel.setValue(true, forKey: "loaded")
-            
-            do {
-                try container.viewContext.save()
-            } catch {
-                container.viewContext.rollback()
-                throw PersistenceControllerError.errorSaving
-            }
-        } else {
-            throw PersistenceControllerError.recordingNotFound
+        guard let recordingListModels = try? container.viewContext.fetch(fetchRequest) else {
+            throw PersistenceControllerError.errorFetching
+        }
+        
+        if let loadedModel = recordingListModels.first(where: { $0.loaded }) {
+            loadedModel.setValue(false, forKey: "loaded")
+        }
+        
+        guard let modelToLoad = recordingListModels.first(where: { $0.unwrappedId == id }) else {
+            throw PersistenceControllerError.recordingListNotFound
+        }
+    
+        modelToLoad.setValue(true, forKey: "loaded")
+        
+        do {
+            try container.viewContext.save()
+        } catch {
+            container.viewContext.rollback()
+            throw PersistenceControllerError.errorSaving
         }
     }
     

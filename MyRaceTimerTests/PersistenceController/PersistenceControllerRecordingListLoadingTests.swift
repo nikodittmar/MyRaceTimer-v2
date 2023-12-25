@@ -44,7 +44,7 @@ final class PersistenceControllerRecordingListLoadingTests: XCTestCase {
         let recordingList2 = RecordingList(id: UUID(), name: "two", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .start, recordings: [])
         
         do {
-            try persistenceController.saveRecordingList(recordingList)
+            try persistenceController.saveRecordingList(recordingList2)
         } catch {
             XCTFail("saveRecordingList() threw an error unexpectedly.")
         }
