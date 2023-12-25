@@ -29,38 +29,109 @@ import SwiftUI
         } else {
             self.persistenceController = PersistenceController.shared
         }
+        updateRecordings()
     }
     
     func updateRecordings() {
-        
+        if let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList() {
+            recordings = persistenceController.fetchRecordings(listId: loadedRecordingList.id)
+        }
     }
     
     func handleRecordTime() {
-        
+        let recording = Recording(id: UUID(), plate: "", timestamp: Date.now)
+        if let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList() {
+            do {
+                try persistenceController.saveRecording(recording: recording, listId: loadedRecordingList.id)
+                handleSelectRecording(recording)
+            } catch {
+                return
+            }
+            recordings = persistenceController.fetchRecordings(listId: loadedRecordingList.id)
+        }
     }
     
     func handleAddPlate() {
-        
+        let recording = Recording(id: UUID(), plate: upcomingPlate, timestamp: Date(timeIntervalSince1970: 0.0))
+        if let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList() {
+            do {
+                try persistenceController.saveRecording(recording: recording, listId: loadedRecordingList.id)
+                handleSelectRecording(recording)
+            } catch {
+                return
+            }
+            recordings = persistenceController.fetchRecordings(listId: loadedRecordingList.id)
+        }
     }
     
     func handleSelectRecording(_ recording: Recording) {
-        
+        if (selectedRecording == nil || recording != selectedRecording) {
+            selectedRecording = recording
+            upcomingPlateSelected = false
+        } else {
+            selectedRecording = nil
+        }
     }
     
     func handleSelectUpcomingPlate() {
-        
+        if (upcomingPlateSelected) {
+            upcomingPlateSelected = false
+        } else {
+            selectedRecording = nil
+            upcomingPlateSelected = true
+        }
     }
     
     func handleAppendPlateDigit(_ digit: Int) {
-        
+        guard (digit >= 0 && digit <= 9) else {
+            return
+        }
+        if let recording = selectedRecording {
+            let plate = recording.plate + String(digit)
+            if (plate.count <= 6) {
+                do {
+                    try persistenceController.updateRecordingPlate(id: recording.id, plate: plate)
+                    updateRecordings()
+                } catch {
+                    return
+                }
+            }
+        } else if (upcomingPlateSelected) {
+            let plate = upcomingPlate + String(digit)
+            if (plate.count <= 6) {
+                upcomingPlate = plate
+            }
+        }
     }
     
     func handleRemoveLastPlateDigit() {
-        
+        if let recording = selectedRecording {
+            if (recording.plate.count >= 1) {
+                let plate = String(recording.plate.dropLast())
+                do {
+                    try persistenceController.updateRecordingPlate(id: recording.id, plate: plate)
+                    updateRecordings()
+                } catch {
+                    return
+                }
+            }
+        } else if (upcomingPlateSelected) {
+            if (upcomingPlate.count >= 1) {
+                let plate = String(upcomingPlate.dropLast())
+                upcomingPlate = plate
+            }
+        }
     }
     
     func handleDeleteRecording() {
-        
+        if let recording = selectedRecording {
+            do {
+                try persistenceController.deleteRecording(id: recording.id)
+                updateRecordings()
+            } catch {
+                return
+            }
+        }
     }
     
     // MARK: Elapsed Timer
