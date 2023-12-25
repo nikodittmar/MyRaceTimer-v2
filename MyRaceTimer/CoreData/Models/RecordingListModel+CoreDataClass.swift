@@ -2,7 +2,7 @@
 //  RecordingListModel+CoreDataClass.swift
 //  MyRaceTimer
 //
-//  Created by Niko Dittmar on 12/23/23.
+//  Created by Niko Dittmar on 12/24/23.
 //
 //
 

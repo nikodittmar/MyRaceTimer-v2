@@ -3,10 +3,11 @@
     <entity name="RecordingListModel" representedClassName="RecordingListModel" syncable="YES">
         <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="loaded" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="recordings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordingModel" inverseName="recordingList" inverseEntity="RecordingModel"/>
+        <relationship name="recordings" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RecordingModel" inverseName="recordingList" inverseEntity="RecordingModel"/>
     </entity>
     <entity name="RecordingModel" representedClassName="RecordingModel" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>

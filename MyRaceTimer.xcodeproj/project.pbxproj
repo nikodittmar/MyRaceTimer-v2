@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		173E5FE12B37E881007DC23B /* RecordingListModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FDD2B37E881007DC23B /* RecordingListModel+CoreDataClass.swift */; };
-		173E5FE22B37E881007DC23B /* RecordingListModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FDE2B37E881007DC23B /* RecordingListModel+CoreDataProperties.swift */; };
 		173E5FE32B37E881007DC23B /* RecordingModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FDF2B37E881007DC23B /* RecordingModel+CoreDataClass.swift */; };
 		173E5FE42B37E881007DC23B /* RecordingModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FE02B37E881007DC23B /* RecordingModel+CoreDataProperties.swift */; };
 		173E5FE82B37E9E3007DC23B /* RecordingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FE72B37E9E3007DC23B /* RecordingList.swift */; };
+		173E5FEB2B38A190007DC23B /* PersistenceControllerRecordingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FEA2B38A190007DC23B /* PersistenceControllerRecordingTests.swift */; };
+		173E5FED2B38A1A3007DC23B /* PersistenceControllerRecordingListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FEC2B38A1A3007DC23B /* PersistenceControllerRecordingListTests.swift */; };
+		173E5FF52B394E2F007DC23B /* PersistenceControllerRecordingListLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FF42B394E2F007DC23B /* PersistenceControllerRecordingListLoadingTests.swift */; };
+		173E5FF82B395498007DC23B /* RecordingListModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FF62B395498007DC23B /* RecordingListModel+CoreDataClass.swift */; };
+		173E5FF92B395498007DC23B /* RecordingListModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FF72B395498007DC23B /* RecordingListModel+CoreDataProperties.swift */; };
 		173EC3762B34EA2D006E476D /* MyRaceTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */; };
 		173EC3782B34EA2D006E476D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3772B34EA2D006E476D /* ContentView.swift */; };
 		173EC37A2B34EA2F006E476D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173EC3792B34EA2F006E476D /* Assets.xcassets */; };
@@ -21,7 +24,6 @@
 		173EC3A22B34EF21006E476D /* MyRaceTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3A02B34EF21006E476D /* MyRaceTimer.xcdatamodeld */; };
 		173EC3A42B34EFAE006E476D /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3A32B34EFAE006E476D /* PersistenceController.swift */; };
 		173EC3E42B36123F006E476D /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3E32B36123F006E476D /* Recording.swift */; };
-		173EC3E62B36A1D0006E476D /* PersistenceControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3E52B36A1D0006E476D /* PersistenceControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,11 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		173E5FDD2B37E881007DC23B /* RecordingListModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingListModel+CoreDataClass.swift"; sourceTree = "<group>"; };
-		173E5FDE2B37E881007DC23B /* RecordingListModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingListModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		173E5FDF2B37E881007DC23B /* RecordingModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		173E5FE02B37E881007DC23B /* RecordingModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		173E5FE72B37E9E3007DC23B /* RecordingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingList.swift; sourceTree = "<group>"; };
+		173E5FEA2B38A190007DC23B /* PersistenceControllerRecordingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceControllerRecordingTests.swift; sourceTree = "<group>"; };
+		173E5FEC2B38A1A3007DC23B /* PersistenceControllerRecordingListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceControllerRecordingListTests.swift; sourceTree = "<group>"; };
+		173E5FF42B394E2F007DC23B /* PersistenceControllerRecordingListLoadingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceControllerRecordingListLoadingTests.swift; sourceTree = "<group>"; };
+		173E5FF62B395498007DC23B /* RecordingListModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingListModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		173E5FF72B395498007DC23B /* RecordingListModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingListModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		173EC3722B34EA2D006E476D /* MyRaceTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyRaceTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerApp.swift; sourceTree = "<group>"; };
 		173EC3772B34EA2D006E476D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,7 +65,6 @@
 		173EC3A12B34EF21006E476D /* MyRaceTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyRaceTimer.xcdatamodel; sourceTree = "<group>"; };
 		173EC3A32B34EFAE006E476D /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		173EC3E32B36123F006E476D /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
-		173EC3E52B36A1D0006E476D /* PersistenceControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,12 +105,22 @@
 		173E5FE62B37E8A5007DC23B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				173E5FDD2B37E881007DC23B /* RecordingListModel+CoreDataClass.swift */,
-				173E5FDE2B37E881007DC23B /* RecordingListModel+CoreDataProperties.swift */,
+				173E5FF62B395498007DC23B /* RecordingListModel+CoreDataClass.swift */,
+				173E5FF72B395498007DC23B /* RecordingListModel+CoreDataProperties.swift */,
 				173E5FDF2B37E881007DC23B /* RecordingModel+CoreDataClass.swift */,
 				173E5FE02B37E881007DC23B /* RecordingModel+CoreDataProperties.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		173E5FE92B38A171007DC23B /* PersistenceController */ = {
+			isa = PBXGroup;
+			children = (
+				173E5FEA2B38A190007DC23B /* PersistenceControllerRecordingTests.swift */,
+				173E5FEC2B38A1A3007DC23B /* PersistenceControllerRecordingListTests.swift */,
+				173E5FF42B394E2F007DC23B /* PersistenceControllerRecordingListLoadingTests.swift */,
+			);
+			path = PersistenceController;
 			sourceTree = "<group>";
 		};
 		173EC3692B34EA2D006E476D = {
@@ -155,7 +169,7 @@
 		173EC3862B34EA2F006E476D /* MyRaceTimerTests */ = {
 			isa = PBXGroup;
 			children = (
-				173EC3E52B36A1D0006E476D /* PersistenceControllerTests.swift */,
+				173E5FE92B38A171007DC23B /* PersistenceController */,
 			);
 			path = MyRaceTimerTests;
 			sourceTree = "<group>";
@@ -300,15 +314,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				173EC3E42B36123F006E476D /* Recording.swift in Sources */,
+				173E5FF82B395498007DC23B /* RecordingListModel+CoreDataClass.swift in Sources */,
 				173EC3782B34EA2D006E476D /* ContentView.swift in Sources */,
 				173EC3762B34EA2D006E476D /* MyRaceTimerApp.swift in Sources */,
 				173E5FE32B37E881007DC23B /* RecordingModel+CoreDataClass.swift in Sources */,
 				173EC3A22B34EF21006E476D /* MyRaceTimer.xcdatamodeld in Sources */,
 				173E5FE82B37E9E3007DC23B /* RecordingList.swift in Sources */,
+				173E5FF92B395498007DC23B /* RecordingListModel+CoreDataProperties.swift in Sources */,
 				173EC3A42B34EFAE006E476D /* PersistenceController.swift in Sources */,
 				173E5FE42B37E881007DC23B /* RecordingModel+CoreDataProperties.swift in Sources */,
-				173E5FE12B37E881007DC23B /* RecordingListModel+CoreDataClass.swift in Sources */,
-				173E5FE22B37E881007DC23B /* RecordingListModel+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,7 +330,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				173EC3E62B36A1D0006E476D /* PersistenceControllerTests.swift in Sources */,
+				173E5FF52B394E2F007DC23B /* PersistenceControllerRecordingListLoadingTests.swift in Sources */,
+				173E5FED2B38A1A3007DC23B /* PersistenceControllerRecordingListTests.swift in Sources */,
+				173E5FEB2B38A190007DC23B /* PersistenceControllerRecordingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,7 +2,7 @@
 //  RecordingListModel+CoreDataProperties.swift
 //  MyRaceTimer
 //
-//  Created by Niko Dittmar on 12/23/23.
+//  Created by Niko Dittmar on 12/24/23.
 //
 //
 
@@ -21,6 +21,7 @@ extension RecordingListModel {
     @NSManaged public var updatedDate: Date?
     @NSManaged public var type: String?
     @NSManaged public var id: UUID?
+    @NSManaged public var loaded: Bool
     @NSManaged public var recordings: NSSet?
     
     public var unwrappedId: UUID {
@@ -54,7 +55,6 @@ extension RecordingListModel {
             Recording(id: $0.unwrappedId, plate: $0.unwrappedPlate, timestamp: $0.unwrappedTimestamp)
         }
     }
-
 }
 
 // MARK: Generated accessors for recordings
