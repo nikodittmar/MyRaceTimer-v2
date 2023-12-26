@@ -67,58 +67,88 @@ import XCTest
         }
     }
     
-    func testHandleSelectRecording() throws {
-        let recordings = [
-            Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000)),
-            Recording(id: UUID(), plate: "321", timestamp: Date(timeIntervalSince1970: 1700000000)),
-        ]
+    func testHandleSelectRecordingSelect() throws {
+        let expected = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000))
         
         do {
-            try viewModel.persistenceController.saveRecording(recording: recordings[0], listId: recordingList.id)
-            try viewModel.persistenceController.saveRecording(recording: recordings[1], listId: recordingList.id)
+            try viewModel.persistenceController.saveRecording(recording: expected, listId: recordingList.id)
         } catch {
             XCTFail("saveRecording() threw an error unexpectedly.")
         }
         
-        viewModel.updateRecordings()
-        
-        XCTAssertEqual(viewModel.recordings.count, 2)
-        
         XCTAssertNil(viewModel.selectedRecording)
         
-        viewModel.handleSelectRecording(recordings[0])
+        viewModel.handleSelectRecording(expected)
         
-        if let selectedRecording1 = viewModel.selectedRecording {
-            XCTAssertEqual(selectedRecording1.id, recordings[0].id)
-        } else {
-            XCTFail("Expected selected recording to not be nil.")
+        XCTAssertEqual(expected, viewModel.selectedRecording)
+    }
+    
+    func testHandleSelectRecordingToggle() throws {
+        let recording = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000))
+        
+        do {
+            try viewModel.persistenceController.saveRecording(recording: recording, listId: recordingList.id)
+        } catch {
+            XCTFail("saveRecording() threw an error unexpectedly.")
         }
         
-        viewModel.handleSelectRecording(recordings[1])
+        viewModel.handleSelectRecording(recording)
+        viewModel.handleSelectRecording(recording)
         
-        if let selectedRecording2 = viewModel.selectedRecording {
-            XCTAssertEqual(selectedRecording2.id, recordings[1].id)
-        } else {
-            XCTFail("Expected selected recording to not be nil.")
+        XCTAssertNil(viewModel.selectedRecording)
+    }
+    
+    func testHandleSelectRecordingSwitch() throws {
+        let recording1 = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000))
+        let recording2 = Recording(id: UUID(), plate: "321", timestamp: Date(timeIntervalSince1970: 1700000000))
+        
+        do {
+            try viewModel.persistenceController.saveRecording(recording: recording1, listId: recordingList.id)
+            try viewModel.persistenceController.saveRecording(recording: recording2, listId: recordingList.id)
+        } catch {
+            XCTFail("saveRecording() threw an error unexpectedly.")
+        }
+        
+        viewModel.handleSelectRecording(recording1)
+        XCTAssertEqual(recording1, viewModel.selectedRecording)
+        
+        viewModel.handleSelectRecording(recording2)
+        XCTAssertEqual(recording2, viewModel.selectedRecording)
+    }
+    
+    func testHandleSelectRecordingWithUpcomingPlate() throws {
+        let expected = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000))
+        
+        do {
+            try viewModel.persistenceController.saveRecording(recording: expected, listId: recordingList.id)
+        } catch {
+            XCTFail("saveRecording() threw an error unexpectedly.")
         }
         
         viewModel.handleSelectUpcomingPlate()
-        
         XCTAssertNil(viewModel.selectedRecording)
         XCTAssertTrue(viewModel.upcomingPlateSelected)
         
-        viewModel.handleSelectRecording(recordings[0])
+        viewModel.handleSelectRecording(expected)
+        XCTAssertEqual(expected, viewModel.selectedRecording)
+        XCTAssertFalse(viewModel.upcomingPlateSelected)
         
-        if let selectedRecording1 = viewModel.selectedRecording {
-            XCTAssertEqual(selectedRecording1.id, recordings[0].id)
-            XCTAssertFalse(viewModel.upcomingPlateSelected)
-        } else {
-            XCTFail("Expected selected recording to not be nil.")
-        }
-        
-        viewModel.handleSelectRecording(recordings[0])
-        
+        viewModel.handleSelectUpcomingPlate()
         XCTAssertNil(viewModel.selectedRecording)
+        XCTAssertTrue(viewModel.upcomingPlateSelected)
+    }
+    
+    func testSelectUpcomingPlate() throws {
+        XCTAssertFalse(viewModel.upcomingPlateSelected)
+        viewModel.handleSelectUpcomingPlate()
+        XCTAssertTrue(viewModel.upcomingPlateSelected)
+    }
+    
+    func testSelectUpcomingPlateToggle() throws {
+        XCTAssertFalse(viewModel.upcomingPlateSelected)
+        viewModel.handleSelectUpcomingPlate()
+        XCTAssertTrue(viewModel.upcomingPlateSelected)
+        viewModel.handleSelectUpcomingPlate()
         XCTAssertFalse(viewModel.upcomingPlateSelected)
     }
     
@@ -144,6 +174,27 @@ import XCTest
         }
     }
     
+    func testHandleAppendPlateDigitUpcomingPlate() throws {
+        viewModel.upcomingPlate = "123"
+        viewModel.upcomingPlateSelected = true
+        viewModel.handleAppendPlateDigit(4)
+        XCTAssertEqual(viewModel.upcomingPlate, "1234")
+    }
+    
+    func testHandleAppendPlateDigitInvalidDigitPositive() throws {
+        viewModel.upcomingPlate = "123"
+        viewModel.upcomingPlateSelected = true
+        viewModel.handleAppendPlateDigit(10)
+        XCTAssertEqual(viewModel.upcomingPlate, "123")
+    }
+    
+    func testHandleAppendPlateDigitInvalidDigitNegative() throws {
+        viewModel.upcomingPlate = "123"
+        viewModel.upcomingPlateSelected = true
+        viewModel.handleAppendPlateDigit(-1)
+        XCTAssertEqual(viewModel.upcomingPlate, "123")
+    }
+    
     func testHandleRemoveLastPlateDigit() throws {
         let recording = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000))
 
@@ -164,6 +215,42 @@ import XCTest
         if let recording = viewModel.recordings.first {
             XCTAssertEqual(recording.plate, "12")
         }
+    }
+    
+    func testHandleRemoveLastPlateDigitEmpty() throws {
+        let recording = Recording(id: UUID(), plate: "", timestamp: Date(timeIntervalSince1970: 1700000000))
+
+        do {
+            try viewModel.persistenceController.saveRecording(recording: recording, listId: recordingList.id)
+        } catch {
+            XCTFail("saveRecording() threw an error unexpectedly.")
+        }
+        
+        viewModel.updateRecordings()
+        
+        viewModel.handleSelectRecording(recording)
+        
+        viewModel.handleRemoveLastPlateDigit()
+        
+        XCTAssertEqual(viewModel.recordings.count, 1)
+        
+        if let recording = viewModel.recordings.first {
+            XCTAssertEqual(recording.plate, "")
+        }
+    }
+    
+    func testHandleRemoveLastPlateDigitUpcomingPlate() throws {
+        viewModel.upcomingPlate = "123"
+        viewModel.upcomingPlateSelected = true
+        viewModel.handleRemoveLastPlateDigit()
+        XCTAssertEqual(viewModel.upcomingPlate, "12")
+    }
+    
+    func testHandleRemoveLastPlateDigitEmptyUpcomingPlate() throws {
+        viewModel.upcomingPlate = ""
+        viewModel.upcomingPlateSelected = true
+        viewModel.handleRemoveLastPlateDigit()
+        XCTAssertEqual(viewModel.upcomingPlate, "")
     }
     
     func testHandleDeleteRecording() throws {

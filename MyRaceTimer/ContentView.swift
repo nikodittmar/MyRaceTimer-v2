@@ -11,8 +11,6 @@ struct ContentView: View {
     @StateObject var viewModel: ContentViewModel = ContentViewModel()
     
     var body: some View {
-        Text("deez")
-/*
         NavigationStack {
             VStack(spacing: 0) {
                 Button {
@@ -32,7 +30,7 @@ struct ContentView: View {
                 .accessibilityLabel("Record Time")
                 
                 HStack {
-                    Text("^[\(viewModel.recordings.count)](inflect: true)")
+                    Text("^[\(viewModel.recordings.count) Recording](inflect: true)")
                     Spacer()
                     if viewModel.timerIsActive {
                         Text("Since Last: \(viewModel.timeElapsedString)")
@@ -48,25 +46,28 @@ struct ContentView: View {
                 .border(Color(UIColor.systemGray4))
                 .background(Color(UIColor.systemGray6))
                 
-                RecordingsList(recordings: viewModel.recordings, selectedRecording: viewModel.selectedRecording,selectRecording: { (recording: Recording) in viewModel.handleSelectRecording(recording: recording)})
-                
-                if viewModel.displayingUpcomingPlateButton() {
-                    Button {
-                        viewModel.handleAddUpcomingPlate()
-                    } label: {
-                        Text("Add Plate Number")
-                            .foregroundColor(.blue)
-                            .font(.title3)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 60)
-                            .border(Color(UIColor.systemGray4))
-                            .background(Color(UIColor.systemGray6))
+                RecordingsListView(
+                    recordings: viewModel.recordings,
+                    selectedRecording: viewModel.selectedRecording,
+                    selectRecording: { (recording: Recording) in viewModel.handleSelectRecording(recording)
                     }
-                    .padding(.bottom, -1)
-                }
+                )
                 
-                NumberPad(onInputDigit: { (digit: Int) in
-                    viewModel.handleAppendPlateDigit(digit: digit)
+                Button {
+                    viewModel.handleSelectUpcomingPlate()
+                } label: {
+                    Text("Add Plate Number")
+                        .foregroundColor(.blue)
+                        .font(.title3)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 60)
+                        .border(Color(UIColor.systemGray4))
+                        .background(Color(UIColor.systemGray6))
+                }
+                .padding(.bottom, -1)
+                
+                NumberPadView(onInputDigit: { (digit: Int) in
+                    viewModel.handleAppendPlateDigit(digit)
                 }, onBackspace: {
                     viewModel.handleRemoveLastPlateDigit()
                 }, onDelete: {
@@ -78,37 +79,20 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        viewModel.presentingResultSheet = true
+                        
                     } label: {
                         Text("Results")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.presentingRecordingSetsSheet = true
+                        
                     } label: {
                         Text("Recordings")
                     }
                 }
             }
-            .sheet(isPresented: $viewModel.presentingRecordingSetsSheet) {
-                RecordingSetsSheet(update: {
-                    viewModel.updateRecordings()
-                }, deactivateTimer: {
-                    viewModel.deactivateTimer()
-                })
-            }
-            .sheet(isPresented: $viewModel.presentingResultSheet) {
-                ResultSheet()
-            }
-            .alert("Successfully Imported Recording Set!", isPresented: $viewModel.presentingSuccessfulImportAlert, actions: {
-                Button("Ok", role: .cancel, action: {})
-            })
-            .alert("Error Importing Recording Set!", isPresented: $viewModel.presentingImportErrorAlert, actions: {
-                Button("Ok", role: .cancel, action: {})
-            })
             .ignoresSafeArea(.keyboard)
         }
-*/
     }
 }

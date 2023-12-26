@@ -59,7 +59,7 @@ final class PersistenceControllerRecordingTests: XCTestCase {
     }
     
     func testUpdateRecordingPlate() throws {
-        var recording = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000))
+        let recording = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000))
         
         do {
             try persistenceController.saveRecording(recording: recording, listId: recordingList.id)
@@ -84,7 +84,7 @@ final class PersistenceControllerRecordingTests: XCTestCase {
     }
     
     func testUpdateRecordingType() throws {
-        var recording = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 0))
+        let recording = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 0))
         
         do {
             try persistenceController.saveRecording(recording: recording, listId: recordingList.id)

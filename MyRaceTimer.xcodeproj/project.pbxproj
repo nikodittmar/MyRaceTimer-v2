@@ -17,6 +17,9 @@
 		173E5FF92B395498007DC23B /* RecordingListModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FF72B395498007DC23B /* RecordingListModel+CoreDataProperties.swift */; };
 		173E5FFB2B39DC03007DC23B /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FFA2B39DC03007DC23B /* ContentViewModel.swift */; };
 		173E5FFD2B39E3E7007DC23B /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FFC2B39E3E7007DC23B /* ContentViewModelTests.swift */; };
+		173E5FFF2B3A4A30007DC23B /* RecordingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FFE2B3A4A30007DC23B /* RecordingsListView.swift */; };
+		173E60032B3A934F007DC23B /* NumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E60022B3A934F007DC23B /* NumberPadView.swift */; };
+		173E60052B3A9CE0007DC23B /* RecordingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E60042B3A9CE0007DC23B /* RecordingTests.swift */; };
 		173EC3762B34EA2D006E476D /* MyRaceTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */; };
 		173EC3782B34EA2D006E476D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3772B34EA2D006E476D /* ContentView.swift */; };
 		173EC37A2B34EA2F006E476D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173EC3792B34EA2F006E476D /* Assets.xcassets */; };
@@ -56,6 +59,9 @@
 		173E5FF72B395498007DC23B /* RecordingListModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingListModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		173E5FFA2B39DC03007DC23B /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		173E5FFC2B39E3E7007DC23B /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
+		173E5FFE2B3A4A30007DC23B /* RecordingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsListView.swift; sourceTree = "<group>"; };
+		173E60022B3A934F007DC23B /* NumberPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadView.swift; sourceTree = "<group>"; };
+		173E60042B3A9CE0007DC23B /* RecordingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingTests.swift; sourceTree = "<group>"; };
 		173EC3722B34EA2D006E476D /* MyRaceTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyRaceTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerApp.swift; sourceTree = "<group>"; };
 		173EC3772B34EA2D006E476D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -152,6 +158,8 @@
 			children = (
 				173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */,
 				173EC3772B34EA2D006E476D /* ContentView.swift */,
+				173E60022B3A934F007DC23B /* NumberPadView.swift */,
+				173E5FFE2B3A4A30007DC23B /* RecordingsListView.swift */,
 				173E5FFA2B39DC03007DC23B /* ContentViewModel.swift */,
 				173E5FE52B37E894007DC23B /* CoreData */,
 				173EC3E32B36123F006E476D /* Recording.swift */,
@@ -176,6 +184,7 @@
 			children = (
 				173E5FE92B38A171007DC23B /* PersistenceController */,
 				173E5FFC2B39E3E7007DC23B /* ContentViewModelTests.swift */,
+				173E60042B3A9CE0007DC23B /* RecordingTests.swift */,
 			);
 			path = MyRaceTimerTests;
 			sourceTree = "<group>";
@@ -321,6 +330,8 @@
 			files = (
 				173EC3E42B36123F006E476D /* Recording.swift in Sources */,
 				173E5FF82B395498007DC23B /* RecordingListModel+CoreDataClass.swift in Sources */,
+				173E60032B3A934F007DC23B /* NumberPadView.swift in Sources */,
+				173E5FFF2B3A4A30007DC23B /* RecordingsListView.swift in Sources */,
 				173EC3782B34EA2D006E476D /* ContentView.swift in Sources */,
 				173EC3762B34EA2D006E476D /* MyRaceTimerApp.swift in Sources */,
 				173E5FE32B37E881007DC23B /* RecordingModel+CoreDataClass.swift in Sources */,
@@ -339,6 +350,7 @@
 			files = (
 				173E5FFD2B39E3E7007DC23B /* ContentViewModelTests.swift in Sources */,
 				173E5FF52B394E2F007DC23B /* PersistenceControllerRecordingListLoadingTests.swift in Sources */,
+				173E60052B3A9CE0007DC23B /* RecordingTests.swift in Sources */,
 				173E5FED2B38A1A3007DC23B /* PersistenceControllerRecordingListTests.swift in Sources */,
 				173E5FEB2B38A190007DC23B /* PersistenceControllerRecordingTests.swift in Sources */,
 			);

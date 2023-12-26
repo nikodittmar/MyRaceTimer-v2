@@ -29,6 +29,11 @@ import SwiftUI
         } else {
             self.persistenceController = PersistenceController.shared
         }
+        if ((try? persistenceController.fetchLoadedRecordingList()) == nil) {
+            let recordingList = RecordingList(id: UUID(), name: "", createdDate: Date.now, updatedDate: Date.now, type: .start, recordings: [])
+            try? persistenceController.saveRecordingList(recordingList)
+            try? persistenceController.loadRecordingList(id: recordingList.id)
+        }
         updateRecordings()
     }
     
@@ -41,12 +46,8 @@ import SwiftUI
     func handleRecordTime() {
         let recording = Recording(id: UUID(), plate: "", timestamp: Date.now)
         if let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList() {
-            do {
-                try persistenceController.saveRecording(recording: recording, listId: loadedRecordingList.id)
-                handleSelectRecording(recording)
-            } catch {
-                return
-            }
+            try? persistenceController.saveRecording(recording: recording, listId: loadedRecordingList.id)
+            handleSelectRecording(recording)
             recordings = persistenceController.fetchRecordings(listId: loadedRecordingList.id)
         }
     }
@@ -54,12 +55,8 @@ import SwiftUI
     func handleAddPlate() {
         let recording = Recording(id: UUID(), plate: upcomingPlate, timestamp: Date(timeIntervalSince1970: 0.0))
         if let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList() {
-            do {
-                try persistenceController.saveRecording(recording: recording, listId: loadedRecordingList.id)
-                handleSelectRecording(recording)
-            } catch {
-                return
-            }
+            try? persistenceController.saveRecording(recording: recording, listId: loadedRecordingList.id)
+            handleSelectRecording(recording)
             recordings = persistenceController.fetchRecordings(listId: loadedRecordingList.id)
         }
     }
@@ -89,12 +86,8 @@ import SwiftUI
         if let recording = selectedRecording {
             let plate = recording.plate + String(digit)
             if (plate.count <= 6) {
-                do {
-                    try persistenceController.updateRecordingPlate(id: recording.id, plate: plate)
-                    updateRecordings()
-                } catch {
-                    return
-                }
+                try? persistenceController.updateRecordingPlate(id: recording.id, plate: plate)
+                updateRecordings()
             }
         } else if (upcomingPlateSelected) {
             let plate = upcomingPlate + String(digit)
@@ -108,12 +101,8 @@ import SwiftUI
         if let recording = selectedRecording {
             if (recording.plate.count >= 1) {
                 let plate = String(recording.plate.dropLast())
-                do {
-                    try persistenceController.updateRecordingPlate(id: recording.id, plate: plate)
-                    updateRecordings()
-                } catch {
-                    return
-                }
+                try? persistenceController.updateRecordingPlate(id: recording.id, plate: plate)
+                updateRecordings()
             }
         } else if (upcomingPlateSelected) {
             if (upcomingPlate.count >= 1) {
@@ -125,12 +114,8 @@ import SwiftUI
     
     func handleDeleteRecording() {
         if let recording = selectedRecording {
-            do {
-                try persistenceController.deleteRecording(id: recording.id)
-                updateRecordings()
-            } catch {
-                return
-            }
+            try? persistenceController.deleteRecording(id: recording.id)
+            updateRecordings()
         }
     }
     
