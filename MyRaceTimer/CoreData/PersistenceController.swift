@@ -92,6 +92,7 @@ class PersistenceController {
         recordingModel.id = recording.id
         recordingModel.plate = recording.plate
         recordingModel.timestamp = recording.timestamp
+        recordingModel.createdDate = recording.createdDate
         
         let fetchRequest = NSFetchRequest<RecordingListModel>(entityName: "RecordingListModel")
         fetchRequest.predicate = NSPredicate(format: "id == %@", listId as CVarArg)

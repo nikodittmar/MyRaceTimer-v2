@@ -48,11 +48,11 @@ extension RecordingListModel {
         let set = recordings as? Set<RecordingModel> ?? []
         
         let recordingModels = set.sorted {
-            $0.unwrappedTimestamp > $1.unwrappedTimestamp
+            $0.unwrappedCreatedDate > $1.unwrappedCreatedDate
         }
         
         return recordingModels.map {
-            Recording(id: $0.unwrappedId, plate: $0.unwrappedPlate, timestamp: $0.unwrappedTimestamp)
+            Recording(id: $0.unwrappedId, plate: $0.unwrappedPlate, timestamp: $0.unwrappedTimestamp, createdDate: $0.unwrappedCreatedDate)
         }
     }
 }

@@ -30,7 +30,7 @@ struct ContentView: View {
                 .accessibilityLabel("Record Time")
                 
                 HStack {
-                    Text("^[\(viewModel.recordings.count) Recording](inflect: true)")
+                    Text("^[\(viewModel.recordings.count) \("Recording")](inflect: true)")
                     Spacer()
                     if viewModel.timerIsActive {
                         Text("Since Last: \(viewModel.timeElapsedString)")
@@ -54,7 +54,7 @@ struct ContentView: View {
                 )
                 
                 Button {
-                    viewModel.handleSelectUpcomingPlate()
+                    viewModel.handleAddPlate()
                 } label: {
                     Text("Add Plate Number")
                         .foregroundColor(.blue)

@@ -10,6 +10,7 @@
         <relationship name="recordings" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RecordingModel" inverseName="recordingList" inverseEntity="RecordingModel"/>
     </entity>
     <entity name="RecordingModel" representedClassName="RecordingModel" syncable="YES">
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="plate" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

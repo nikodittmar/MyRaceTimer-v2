@@ -19,6 +19,7 @@ extension RecordingModel {
     @NSManaged public var id: UUID?
     @NSManaged public var plate: String?
     @NSManaged public var timestamp: Date?
+    @NSManaged public var createdDate: Date?
     @NSManaged public var recordingList: RecordingListModel?
     
     public var unwrappedId: UUID {
@@ -31,6 +32,10 @@ extension RecordingModel {
     
     public var unwrappedTimestamp: Date {
         timestamp ?? Date(timeIntervalSince1970: 0.0)
+    }
+    
+    public var unwrappedCreatedDate: Date {
+        createdDate ?? Date(timeIntervalSince1970: 0.0)
     }
 }
 

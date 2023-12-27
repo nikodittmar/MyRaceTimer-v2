@@ -38,6 +38,7 @@ struct RecordingsListView: View {
                         Text(recording.timestampString()).font(.subheadline.monospaced())
                     }
                 }
+                .listRowBackground(selectedRecording?.id == recording.id ? Color.accentColor.opacity(0.2) : .clear)
             }
             .accessibilityLabel("Recordings")
             .listStyle(.inset)

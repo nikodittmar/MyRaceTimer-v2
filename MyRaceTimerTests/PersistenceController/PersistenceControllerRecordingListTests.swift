@@ -52,7 +52,7 @@ final class PersistenceControllerRecordingListTests: XCTestCase {
     }
     
     func testUpdateRecordingListName() throws {
-        var recordingList = RecordingList(id: UUID(), name: "test", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .finish, recordings: [])
+        let recordingList = RecordingList(id: UUID(), name: "test", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .finish, recordings: [])
         
         do {
             try persistenceController.saveRecordingList(recordingList)
@@ -76,7 +76,7 @@ final class PersistenceControllerRecordingListTests: XCTestCase {
     }
     
     func testUpdateRecordingListType() throws {
-        var recordingList = RecordingList(id: UUID(), name: "test", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .finish, recordings: [])
+        let recordingList = RecordingList(id: UUID(), name: "test", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .finish, recordings: [])
         
         do {
             try persistenceController.saveRecordingList(recordingList)

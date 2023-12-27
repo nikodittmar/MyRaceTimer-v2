@@ -11,11 +11,13 @@ public struct Recording: Equatable, Identifiable {
     public var id: UUID
     public var plate: String
     public var timestamp: Date
+    public var createdDate: Date
         
-    init(id: UUID, plate: String, timestamp: Date) {
+    init(id: UUID, plate: String, timestamp: Date, createdDate: Date) {
         self.id = id
         self.plate = plate
         self.timestamp = timestamp
+        self.createdDate = createdDate
     }
     
     func timestampString() -> String {

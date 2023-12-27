@@ -14,9 +14,6 @@ import SwiftUI
     @Published var recordings: [Recording] = []
     @Published var selectedRecording: Recording? = nil
     
-    @Published var upcomingPlate: String = ""
-    @Published var upcomingPlateSelected: Bool = false
-    
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     var secondsSinceLastRecording: Double = 0.0
     
@@ -43,17 +40,30 @@ import SwiftUI
         }
     }
     
+    // TODO: ADD NEW UNIT TESTS
+    
     func handleRecordTime() {
-        let recording = Recording(id: UUID(), plate: "", timestamp: Date.now)
-        if let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList() {
-            try? persistenceController.saveRecording(recording: recording, listId: loadedRecordingList.id)
-            handleSelectRecording(recording)
-            recordings = persistenceController.fetchRecordings(listId: loadedRecordingList.id)
+        let currentTime = Date.now
+        let recordingsWithoutTimestamps = recordings.filter {
+            $0.timestamp == Date(timeIntervalSince1970: 0.0)
+        }
+        if recordingsWithoutTimestamps.isEmpty {
+            let recording = Recording(id: UUID(), plate: "", timestamp: currentTime, createdDate: currentTime)
+            if let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList() {
+                try? persistenceController.saveRecording(recording: recording, listId: loadedRecordingList.id)
+                handleSelectRecording(recording)
+                recordings = persistenceController.fetchRecordings(listId: loadedRecordingList.id)
+            }
+        } else {
+            for recording in recordingsWithoutTimestamps {
+                try? persistenceController.updateRecordingTimestamp(id: recording.id, timestamp: currentTime)
+                updateRecordings()
+            }
         }
     }
     
     func handleAddPlate() {
-        let recording = Recording(id: UUID(), plate: upcomingPlate, timestamp: Date(timeIntervalSince1970: 0.0))
+        let recording = Recording(id: UUID(), plate: "", timestamp: Date(timeIntervalSince1970: 0.0), createdDate: Date.now)
         if let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList() {
             try? persistenceController.saveRecording(recording: recording, listId: loadedRecordingList.id)
             handleSelectRecording(recording)
@@ -62,20 +72,10 @@ import SwiftUI
     }
     
     func handleSelectRecording(_ recording: Recording) {
-        if (selectedRecording == nil || recording != selectedRecording) {
+        if (selectedRecording == nil || recording.id != selectedRecording?.id) {
             selectedRecording = recording
-            upcomingPlateSelected = false
         } else {
             selectedRecording = nil
-        }
-    }
-    
-    func handleSelectUpcomingPlate() {
-        if (upcomingPlateSelected) {
-            upcomingPlateSelected = false
-        } else {
-            selectedRecording = nil
-            upcomingPlateSelected = true
         }
     }
     
@@ -88,26 +88,17 @@ import SwiftUI
             if (plate.count <= 6) {
                 try? persistenceController.updateRecordingPlate(id: recording.id, plate: plate)
                 updateRecordings()
-            }
-        } else if (upcomingPlateSelected) {
-            let plate = upcomingPlate + String(digit)
-            if (plate.count <= 6) {
-                upcomingPlate = plate
+                selectedRecording!.plate = plate
             }
         }
     }
     
     func handleRemoveLastPlateDigit() {
         if let recording = selectedRecording {
-            if (recording.plate.count >= 1) {
-                let plate = String(recording.plate.dropLast())
-                try? persistenceController.updateRecordingPlate(id: recording.id, plate: plate)
+            if recording.plate.count >= 1 {
+                try? persistenceController.updateRecordingPlate(id: recording.id, plate: String(recording.plate.dropLast()))
+                selectedRecording!.plate.removeLast()
                 updateRecordings()
-            }
-        } else if (upcomingPlateSelected) {
-            if (upcomingPlate.count >= 1) {
-                let plate = String(upcomingPlate.dropLast())
-                upcomingPlate = plate
             }
         }
     }
