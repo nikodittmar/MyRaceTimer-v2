@@ -12,7 +12,7 @@ import SwiftUI
     let persistenceController: PersistenceController
     
     @Published var recordings: [Recording] = []
-    @Published var selectedRecording: Recording? = nil
+    @Published var selectedRecordingId: UUID? = nil
     
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     var secondsSinceLastRecording: Double = 0.0
@@ -58,6 +58,9 @@ import SwiftUI
                 updateRecordings()
             }
         }
+        
+        resetTimer()
+        timerIsActive = true
     }
     
     func handleAddPlate() {
@@ -70,10 +73,10 @@ import SwiftUI
     }
     
     func handleSelectRecording(_ recording: Recording) {
-        if (selectedRecording == nil || recording.id != selectedRecording?.id) {
-            selectedRecording = recording
+        if (selectedRecordingId == nil || recording.id != selectedRecordingId) {
+            selectedRecordingId = recording.id
         } else {
-            selectedRecording = nil
+            selectedRecordingId = nil
         }
     }
     
@@ -81,31 +84,32 @@ import SwiftUI
         guard (digit >= 0 && digit <= 9) else {
             return
         }
-        if let recording = selectedRecording {
-            let plate = recording.plate + String(digit)
-            if (plate.count <= 6) {
-                try? persistenceController.updateRecordingPlate(id: recording.id, plate: plate)
-                updateRecordings()
-                selectedRecording!.plate = plate
-            }
+        guard let recording = recordings.first(where: { $0.id == selectedRecordingId }) else {
+            return
+        }
+        let plate = recording.plate + String(digit)
+        if plate.count <= 6 {
+            try? persistenceController.updateRecordingPlate(id: recording.id, plate: plate)
+            updateRecordings()
         }
     }
     
     func handleRemoveLastPlateDigit() {
-        if let recording = selectedRecording {
-            if recording.plate.count >= 1 {
-                try? persistenceController.updateRecordingPlate(id: recording.id, plate: String(recording.plate.dropLast()))
-                selectedRecording!.plate.removeLast()
-                updateRecordings()
-            }
+        guard let recording = recordings.first(where: { $0.id == selectedRecordingId }) else {
+            return
+        }
+        if recording.plate.count >= 1 {
+            try? persistenceController.updateRecordingPlate(id: recording.id, plate: String(recording.plate.dropLast()))
+            updateRecordings()
         }
     }
     
     func handleDeleteRecording() {
-        if let recording = selectedRecording {
-            try? persistenceController.deleteRecording(id: recording.id)
-            updateRecordings()
+        guard let recording = recordings.first(where: { $0.id == selectedRecordingId }) else {
+            return
         }
+        try? persistenceController.deleteRecording(id: recording.id)
+        updateRecordings()
     }
     
     // MARK: Elapsed Timer

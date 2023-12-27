@@ -48,7 +48,7 @@ struct ContentView: View {
                 
                 RecordingsListView(
                     recordings: viewModel.recordings,
-                    selectedRecording: viewModel.selectedRecording,
+                    selectedRecordingId: viewModel.selectedRecordingId,
                     selectRecording: { (recording: Recording) in viewModel.handleSelectRecording(recording)
                     }
                 )

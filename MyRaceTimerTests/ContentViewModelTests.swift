@@ -48,7 +48,7 @@ import XCTest
         XCTAssertEqual(viewModel.recordings.count, 1)
         if let recording = viewModel.recordings.first {
             XCTAssertEqual(recording.plate, "")
-            XCTAssert(recording == viewModel.selectedRecording)
+            XCTAssert(recording.id == viewModel.selectedRecordingId)
         } else {
             XCTFail("Expected one but no recordings were found.")
         }
@@ -83,11 +83,11 @@ import XCTest
             XCTFail("saveRecording() threw an error unexpectedly.")
         }
         
-        XCTAssertNil(viewModel.selectedRecording)
+        XCTAssertNil(viewModel.selectedRecordingId)
         
         viewModel.handleSelectRecording(expected)
         
-        XCTAssertEqual(expected, viewModel.selectedRecording)
+        XCTAssertEqual(expected.id, viewModel.selectedRecordingId)
     }
     
     func testHandleSelectRecordingToggle() throws {
@@ -102,7 +102,7 @@ import XCTest
         viewModel.handleSelectRecording(recording)
         viewModel.handleSelectRecording(recording)
         
-        XCTAssertNil(viewModel.selectedRecording)
+        XCTAssertNil(viewModel.selectedRecordingId)
     }
     
     func testHandleSelectRecordingSwitch() throws {
@@ -117,10 +117,10 @@ import XCTest
         }
         
         viewModel.handleSelectRecording(recording1)
-        XCTAssertEqual(recording1, viewModel.selectedRecording)
+        XCTAssertEqual(recording1.id, viewModel.selectedRecordingId)
         
         viewModel.handleSelectRecording(recording2)
-        XCTAssertEqual(recording2, viewModel.selectedRecording)
+        XCTAssertEqual(recording2.id, viewModel.selectedRecordingId)
     }
     
     func testHandleAppendPlateDigit() throws {

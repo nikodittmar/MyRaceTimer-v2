@@ -10,7 +10,7 @@ import SwiftUI
 struct RecordingsListView: View {
     
     var recordings: [Recording]
-    var selectedRecording: Recording?
+    var selectedRecordingId: UUID?
     var selectRecording: (Recording) -> Void
     
     var body: some View {
@@ -38,7 +38,7 @@ struct RecordingsListView: View {
                         Text(recording.timestampString()).font(.subheadline.monospaced())
                     }
                 }
-                .listRowBackground(selectedRecording?.id == recording.id ? Color.accentColor.opacity(0.2) : .clear)
+                .listRowBackground(selectedRecordingId == recording.id ? Color.accentColor.opacity(0.2) : .clear)
             }
             .accessibilityLabel("Recordings")
             .listStyle(.inset)
