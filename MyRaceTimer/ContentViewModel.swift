@@ -40,8 +40,6 @@ import SwiftUI
         }
     }
     
-    // TODO: ADD NEW UNIT TESTS
-    
     func handleRecordTime() {
         let currentTime = Date.now
         let recordingsWithoutTimestamps = recordings.filter {

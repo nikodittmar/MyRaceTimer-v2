@@ -52,7 +52,15 @@ import XCTest
         } else {
             XCTFail("Expected one but no recordings were found.")
         }
-        
+    }
+    
+    func testHandleRecordTimePlates() throws {
+        viewModel.handleAddPlate()
+        XCTAssertEqual(viewModel.recordings.first?.timestamp, Date(timeIntervalSince1970: 0.0))
+        XCTAssertEqual(viewModel.recordings.count, 1)
+        viewModel.handleRecordTime()
+        XCTAssertEqual(viewModel.recordings.count, 1)
+        XCTAssertNotEqual(viewModel.recordings.first?.timestamp, Date(timeIntervalSince1970: 0.0))
     }
     
     func testHandleAddPlate() throws {
@@ -134,6 +142,50 @@ import XCTest
         
         if let recording = viewModel.recordings.first {
             XCTAssertEqual(recording.plate, "1234")
+        }
+    }
+    
+    func testHandleAppendPlateDigitInvalidDigitOver() throws {
+        let recording = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000), createdDate: Date(timeIntervalSince1970: 1700000000))
+
+        do {
+            try viewModel.persistenceController.saveRecording(recording: recording, listId: recordingList.id)
+        } catch {
+            XCTFail("saveRecording() threw an error unexpectedly.")
+        }
+        
+        viewModel.updateRecordings()
+        
+        viewModel.handleSelectRecording(recording)
+        
+        viewModel.handleAppendPlateDigit(10)
+        
+        XCTAssertEqual(viewModel.recordings.count, 1)
+        
+        if let recording = viewModel.recordings.first {
+            XCTAssertEqual(recording.plate, "123")
+        }
+    }
+    
+    func testHandleAppendPlateDigitInvalidDigitUnder() throws {
+        let recording = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000), createdDate: Date(timeIntervalSince1970: 1700000000))
+
+        do {
+            try viewModel.persistenceController.saveRecording(recording: recording, listId: recordingList.id)
+        } catch {
+            XCTFail("saveRecording() threw an error unexpectedly.")
+        }
+        
+        viewModel.updateRecordings()
+        
+        viewModel.handleSelectRecording(recording)
+        
+        viewModel.handleAppendPlateDigit(-1)
+        
+        XCTAssertEqual(viewModel.recordings.count, 1)
+        
+        if let recording = viewModel.recordings.first {
+            XCTAssertEqual(recording.plate, "123")
         }
     }
     
