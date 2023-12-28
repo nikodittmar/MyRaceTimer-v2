@@ -31,6 +31,14 @@ final class ContentViewUITests: XCTestCase {
         XCTAssertEqual(recordingsList.cells.count, 1)
     }
     
+    func testSelectRecording() throws {
+        let recordingsList = app.collectionViews["Recordings"]
+        app.buttons["Record Time"].tap()
+        recordingsList.cells.buttons.firstMatch.tap()
+        app.buttons["One"].tap()
+        XCTAssert(recordingsList.cells.staticTexts["-       -"].exists)
+    }
+    
     func testAddPlateRecordTime() throws {
         let recordingsList = app.collectionViews["Recordings"]
         app.buttons["Add Plate Number"].tap()

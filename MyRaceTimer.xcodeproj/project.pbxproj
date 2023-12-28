@@ -160,9 +160,9 @@
 			children = (
 				173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */,
 				173EC3772B34EA2D006E476D /* ContentView.swift */,
+				173E5FFA2B39DC03007DC23B /* ContentViewModel.swift */,
 				173E60022B3A934F007DC23B /* NumberPadView.swift */,
 				173E5FFE2B3A4A30007DC23B /* RecordingsListView.swift */,
-				173E5FFA2B39DC03007DC23B /* ContentViewModel.swift */,
 				173E5FE52B37E894007DC23B /* CoreData */,
 				173EC3E32B36123F006E476D /* Recording.swift */,
 				173E5FE72B37E9E3007DC23B /* RecordingList.swift */,

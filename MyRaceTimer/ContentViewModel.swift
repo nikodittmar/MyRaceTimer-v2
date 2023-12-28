@@ -14,6 +14,8 @@ import SwiftUI
     @Published var recordings: [Recording] = []
     @Published var selectedRecordingId: UUID? = nil
     
+    @Published var presentingRecordingListsSheet: Bool = false
+    
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     var secondsSinceLastRecording: Double = 0.0
     
@@ -108,19 +110,27 @@ import SwiftUI
         guard let recording = recordings.first(where: { $0.id == selectedRecordingId }) else {
             return
         }
+        if recording.timestamp != Date(timeIntervalSince1970: 0.0) {
+            deactivateTimer()
+        }
         try? persistenceController.deleteRecording(id: recording.id)
         updateRecordings()
+        
     }
     
     // MARK: Elapsed Timer
     
     func updateTime() {
-        secondsSinceLastRecording += 1.0
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.unitsStyle = .abbreviated
-        let formattedString = formatter.string(from: TimeInterval(secondsSinceLastRecording)) ?? ""
-        timeElapsedString = formattedString
+        if let lastTimestamp = recordings.first(where: { $0.timestamp != Date(timeIntervalSince1970: 0.0)})?.timestamp {
+            secondsSinceLastRecording = Date.now.timeIntervalSince(lastTimestamp).rounded(.towardZero)
+            let formatter = DateComponentsFormatter()
+            formatter.allowedUnits = [.hour, .minute, .second]
+            formatter.unitsStyle = .abbreviated
+            let formattedString = formatter.string(from: TimeInterval(secondsSinceLastRecording)) ?? ""
+            timeElapsedString = formattedString
+        } else {
+            deactivateTimer()
+        }
     }
     
     func resetTimer() {

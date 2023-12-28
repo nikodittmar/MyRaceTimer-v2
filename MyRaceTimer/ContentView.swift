@@ -78,10 +78,9 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        
-                    } label: {
-                        Text("Results")
+                    Menu("Menu") {
+                        Button("Calculate Results") {}
+                        Button("Load Recording List") {}
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
