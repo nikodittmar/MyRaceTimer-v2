@@ -20,6 +20,7 @@
 		173E5FFF2B3A4A30007DC23B /* RecordingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E5FFE2B3A4A30007DC23B /* RecordingsListView.swift */; };
 		173E60032B3A934F007DC23B /* NumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E60022B3A934F007DC23B /* NumberPadView.swift */; };
 		173E60052B3A9CE0007DC23B /* RecordingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E60042B3A9CE0007DC23B /* RecordingTests.swift */; };
+		173E600B2B3C90AE007DC23B /* ContentViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E600A2B3C90AE007DC23B /* ContentViewUITests.swift */; };
 		173EC3762B34EA2D006E476D /* MyRaceTimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */; };
 		173EC3782B34EA2D006E476D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3772B34EA2D006E476D /* ContentView.swift */; };
 		173EC37A2B34EA2F006E476D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173EC3792B34EA2F006E476D /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 		173E5FFE2B3A4A30007DC23B /* RecordingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsListView.swift; sourceTree = "<group>"; };
 		173E60022B3A934F007DC23B /* NumberPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadView.swift; sourceTree = "<group>"; };
 		173E60042B3A9CE0007DC23B /* RecordingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingTests.swift; sourceTree = "<group>"; };
+		173E600A2B3C90AE007DC23B /* ContentViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewUITests.swift; sourceTree = "<group>"; };
 		173EC3722B34EA2D006E476D /* MyRaceTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyRaceTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerApp.swift; sourceTree = "<group>"; };
 		173EC3772B34EA2D006E476D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				173EC3912B34EA2F006E476D /* MyRaceTimerUITests.swift */,
+				173E600A2B3C90AE007DC23B /* ContentViewUITests.swift */,
 				173EC3932B34EA2F006E476D /* MyRaceTimerUITestsLaunchTests.swift */,
 			);
 			path = MyRaceTimerUITests;
@@ -360,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				173E600B2B3C90AE007DC23B /* ContentViewUITests.swift in Sources */,
 				173EC3922B34EA2F006E476D /* MyRaceTimerUITests.swift in Sources */,
 				173EC3942B34EA2F006E476D /* MyRaceTimerUITestsLaunchTests.swift in Sources */,
 			);

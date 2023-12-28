@@ -29,7 +29,6 @@ struct RecordingsListView: View {
                             .overlay(RoundedRectangle(cornerRadius: 8) .stroke(Color(UIColor.systemGray2), lineWidth: 0.5))
                             .background(Color(UIColor.systemGray6))
                             .cornerRadius(8)
-                            .accessibilityLabel("Plate")
                         if recording.hasDuplicatePlateIn(recordings) {
                             Image(systemName: "square.on.square")
                                 .foregroundColor(.yellow)
