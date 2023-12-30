@@ -12,7 +12,7 @@ import XCTest
     var viewModel: ContentViewModel!
     var recordingList: RecordingList = RecordingList(id: UUID(), name: "test", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .start, recordings: [])
     
-    override func setUp() {
+    override func setUpWithError() throws {
         viewModel = ContentViewModel(forTesting: true)
         
         do {

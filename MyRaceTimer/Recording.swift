@@ -38,13 +38,9 @@ public struct Recording: Equatable, Identifiable {
         if plate.isEmpty {
             return false
         }
-        
-        let plates = recordings.map {
-            $0.plate
-        }
         var count = 0
-        for plate in plates {
-            if plate == self.plate {
+        for recording in recordings {
+            if recording.plate == self.plate {
                 count += 1
             }
         }

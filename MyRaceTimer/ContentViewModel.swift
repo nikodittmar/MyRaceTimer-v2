@@ -14,7 +14,7 @@ import SwiftUI
     @Published var recordings: [Recording] = []
     @Published var selectedRecordingId: UUID? = nil
     
-    @Published var presentingRecordingListsSheet: Bool = false
+    @Published var presentingRecordingsSheet: Bool = false
     
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     var secondsSinceLastRecording: Double = 0.0

@@ -78,19 +78,23 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Menu("Menu") {
-                        Button("Calculate Results") {}
-                        Button("Load Recording List") {}
+                    Button {
+                        
+                    } label: {
+                        Text("Results")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        
+                        viewModel.presentingRecordingsSheet = true
                     } label: {
                         Text("Recordings")
                     }
                 }
             }
+            .sheet(isPresented: $viewModel.presentingRecordingsSheet, content: {
+                RecordingsView(updateRecordings: viewModel.updateRecordings, deactivateTimer: viewModel.deactivateTimer)
+            })
             .ignoresSafeArea(.keyboard)
         }
     }
