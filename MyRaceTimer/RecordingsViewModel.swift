@@ -55,10 +55,6 @@ import SwiftUI
         self.deactivateTimer = {}
     }
     
-    func dismiss() {
-        dismiss = true
-    }
-    
     func updateRecordingListName() {
         if let id = recordingListId {
             try? persistenceController.updateRecordingListName(id: id, name: name)

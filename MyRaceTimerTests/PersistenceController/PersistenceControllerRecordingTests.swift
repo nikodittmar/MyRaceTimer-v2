@@ -37,6 +37,18 @@ final class PersistenceControllerRecordingTests: XCTestCase {
         XCTAssertEqual(expected, result)
     }
     
+    func testCreateAlreadyExistingRecording() throws {
+        let recording = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000), createdDate: Date(timeIntervalSince1970: 1700000000))
+        
+        do {
+            try persistenceController.saveRecording(recording: recording, listId: recordingList.id)
+        } catch {
+            XCTFail("saveRecording() threw an error unexpectedly.")
+        }
+        
+        XCTAssertThrowsError(try persistenceController.saveRecording(recording: recording, listId: recordingList.id))
+    }
+    
     // Should return recordings sorted by timestamp in ascending order.
     func testFetchRecordingsOrder() throws {
         let expected = [

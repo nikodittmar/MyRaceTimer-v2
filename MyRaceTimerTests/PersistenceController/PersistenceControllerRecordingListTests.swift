@@ -30,6 +30,48 @@ final class PersistenceControllerRecordingListTests: XCTestCase {
         XCTAssertEqual(expected, result)
     }
     
+    func testCreateRecordingListCreatesRecordings() throws {
+        let recording1 = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000), createdDate: Date(timeIntervalSince1970: 1700000000))
+        let recording2 = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000), createdDate: Date(timeIntervalSince1970: 1700000000))
+        
+        let recordingList = RecordingList(id: UUID(), name: "test", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .start, recordings: [recording1, recording2])
+        
+        do {
+            try persistenceController.saveRecordingList(recordingList)
+        } catch {
+            XCTFail("saveRecordingList() threw an error unexpectedly.")
+        }
+        
+        XCTAssertNotNil(persistenceController.fetchRecording(id: recording1.id))
+        XCTAssertNotNil(persistenceController.fetchRecording(id: recording2.id))
+    }
+    
+    func testCreateAlreadyExistingRecordingList() throws {
+        let recordingList = RecordingList(id: UUID(), name: "test", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .start, recordings: [])
+        
+        do {
+            try persistenceController.saveRecordingList(recordingList)
+        } catch {
+            XCTFail("saveRecordingList() threw an error unexpectedly.")
+        }
+        
+        XCTAssertThrowsError(try persistenceController.saveRecordingList(recordingList))
+    }
+    
+    func testCreateRecordingListWithExistingRecordings() throws {
+        let recording = Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000), createdDate: Date(timeIntervalSince1970: 1700000000))
+        let recordingList1 = RecordingList(id: UUID(), name: "test", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .start, recordings: [recording])
+        let recordingList2 = RecordingList(id: UUID(), name: "two", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .start, recordings: [recording])
+        
+        do {
+            try persistenceController.saveRecordingList(recordingList1)
+        } catch {
+            XCTFail("saveRecordingList() threw an error unexpectedly.")
+        }
+        
+        XCTAssertThrowsError(try persistenceController.saveRecordingList(recordingList2))
+    }
+    
     // Should return recordingLists sorted by updatedDate in ascending order.
     func testFetchRecordingListsOrder() throws {
         let expected = [

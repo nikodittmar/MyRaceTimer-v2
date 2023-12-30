@@ -14,6 +14,7 @@ enum PersistenceControllerError: Error {
     case recordingNotFound
     case noLoadedRecordingListFound
     case errorFetching
+    case idAlreadyExists
 }
 
 class PersistenceController {
@@ -88,6 +89,10 @@ class PersistenceController {
     // MARK: RecordingModel
     
     func saveRecording(recording: Recording, listId: UUID) throws {
+        guard fetchRecording(id: recording.id) == nil else {
+            throw PersistenceControllerError.idAlreadyExists
+        }
+        
         let recordingModel = RecordingModel(context: container.viewContext)
         recordingModel.id = recording.id
         recordingModel.plate = recording.plate
@@ -107,6 +112,19 @@ class PersistenceController {
             try container.viewContext.save()
         } catch {
             throw PersistenceControllerError.errorSaving
+        }
+    }
+    
+    func fetchRecording(id: UUID) -> Recording? {
+        let fetchRequest = NSFetchRequest<RecordingModel>(entityName: "RecordingModel")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        let recordingModel = try? container.viewContext.fetch(fetchRequest).first
+        
+        if let recording = recordingModel {
+            return Recording(id: recording.unwrappedId, plate: recording.unwrappedPlate, timestamp: recording.unwrappedTimestamp, createdDate: recording.unwrappedCreatedDate)
+        } else {
+            return nil
         }
     }
     
@@ -177,6 +195,10 @@ class PersistenceController {
     // MARK: RecordingListModel
     
     func saveRecordingList(_ recordingList: RecordingList) throws {
+        guard fetchRecordingList(id: recordingList.id) == nil else {
+            throw PersistenceControllerError.idAlreadyExists
+        }
+        
         let recordingListModel = RecordingListModel(context: container.viewContext)
         
         recordingListModel.id = recordingList.id
@@ -186,10 +208,33 @@ class PersistenceController {
         recordingListModel.updatedDate = recordingList.updatedDate
         recordingListModel.loaded = false
         
+        for recording in recordingList.recordings {
+            guard fetchRecording(id: recording.id) == nil else {
+                throw PersistenceControllerError.idAlreadyExists
+            }
+            let recordingModel = RecordingModel(context: container.viewContext)
+            recordingModel.id = recording.id
+            recordingModel.createdDate = recording.createdDate
+            recordingModel.plate = recording.plate
+            recordingModel.timestamp = recording.timestamp
+        }
+        
         do {
             try container.viewContext.save()
         } catch {
             throw PersistenceControllerError.errorSaving
+        }
+    }
+    
+    func fetchRecordingList(id: UUID) -> RecordingList? {
+        let fetchRequest = NSFetchRequest<RecordingListModel>(entityName: "RecordingListModel")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        let recordingListModel = try? container.viewContext.fetch(fetchRequest).first
+        if let list = recordingListModel {
+            return RecordingList(id: list.unwrappedId, name: list.unwrappedName, createdDate: list.unwrappedCreatedDate, updatedDate: list.unwrappedUpdatedDate, type: list.unwrappedType, recordings: list.recordingsArray)
+        } else {
+            return nil
         }
     }
     

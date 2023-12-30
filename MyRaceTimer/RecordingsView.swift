@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+/*
 struct RecordingsView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel: RecordingsViewModel
@@ -118,7 +118,7 @@ struct RecordingsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Close") {
-                        viewModel.dismiss()
+                        viewModel.dismiss = true
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -154,3 +154,4 @@ struct RecordingsView: View {
     }
 }
 
+*/
