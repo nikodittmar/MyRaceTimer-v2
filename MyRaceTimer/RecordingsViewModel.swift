@@ -109,11 +109,11 @@ import SwiftUI
         }
     }
     
-    func selectRecordingList() {
+    func selectRecordingList(id: UUID) {
         
     }
     
-    func deleteRecordingSet() {
+    func deleteRecordingList() {
         
     }
 }

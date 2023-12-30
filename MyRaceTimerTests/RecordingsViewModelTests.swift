@@ -167,4 +167,101 @@ import XCTest
         
         XCTAssertFalse(viewModel.recordingListIsEmpty())
     }
+    
+    func testCreateRecordingList() throws {
+        viewModel.createRecordingList()
+        let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList()
+        
+        if let loadedRecordingList = loadedRecordingList {
+            XCTAssertNotEqual(loadedRecordingList.id, recordingList.id)
+            XCTAssertEqual(loadedRecordingList.name, "")
+            XCTAssertEqual(loadedRecordingList.type, RecordingListType.start)
+            XCTAssertEqual(loadedRecordingList.recordings, [])
+        } else {
+            XCTFail("fetchLoadedRecordingList() returned nill unexpectedly.")
+        }
+    }
+    
+    func testCreateRecordingListEmptyLoadedList() throws {
+        viewModel.createRecordingList()
+        let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList()
+        
+        if let loadedRecordingList = loadedRecordingList {
+            XCTAssertEqual(loadedRecordingList.id, recordingList.id)
+            XCTAssertEqual(loadedRecordingList.name, "")
+            XCTAssertEqual(loadedRecordingList.type, RecordingListType.start)
+            XCTAssertEqual(loadedRecordingList.recordings, [])
+        } else {
+            XCTFail("fetchLoadedRecordingList() returned nill unexpectedly.")
+        }
+    }
+    
+    func testGetOtherRecordingLists() throws {
+        let expected = [RecordingList(id: UUID(), name: "recordingList", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .finish, recordings: [])]
+        
+        do {
+            try persistenceController.saveRecordingList(expected[0])
+        } catch {
+            XCTFail("saveRecordingList() threw an error unexpectedly.")
+        }
+        
+        let result = viewModel.otherRecordingLists()
+        XCTAssertEqual(result, expected)
+    }
+    
+    func testSelectRecordingList() throws {
+        do {
+            try persistenceController.updateRecordingListName(id: recordingList.id, name: "test")
+        } catch {
+            XCTFail("updateRecordingListName() threw an error unexpectedly.")
+        }
+        
+        let expected = RecordingList(id: UUID(), name: "recordingList", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .finish, recordings: [])
+        
+        do {
+            try persistenceController.saveRecordingList(expected)
+        } catch {
+            XCTFail("saveRecordingList() threw an error unexpectedly.")
+        }
+        
+        viewModel.selectRecordingList(id: expected.id)
+        
+        let result = try? persistenceController.fetchLoadedRecordingList()
+        
+        XCTAssertEqual(expected, result)
+    }
+    
+    func testSelectRecordingListEmptyList() throws {
+        let expected = RecordingList(id: UUID(), name: "recordingList", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .finish, recordings: [])
+        
+        do {
+            try persistenceController.saveRecordingList(expected)
+        } catch {
+            XCTFail("saveRecordingList() threw an error unexpectedly.")
+        }
+        
+        viewModel.selectRecordingList(id: expected.id)
+        
+        let result = try? persistenceController.fetchLoadedRecordingList()
+        
+        XCTAssertEqual(expected, result)
+        
+        XCTAssertNil(persistenceController.fetchRecordingList(id: recordingList.id))
+    }
+    
+    func testDeleteRecordingListEmpty() throws {
+
+        viewModel.deleteRecordingList()
+        
+        let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList()
+        
+        if let loadedRecordingList = loadedRecordingList {
+            XCTAssertNotEqual(loadedRecordingList.id, recordingList.id)
+            XCTAssertEqual(loadedRecordingList.name, "")
+            XCTAssertEqual(loadedRecordingList.type, RecordingListType.start)
+            XCTAssertEqual(loadedRecordingList.recordings, [])
+        } else {
+            XCTFail("fetchLoadedRecordingList() returned nill unexpectedly.")
+        }
+    }
 }

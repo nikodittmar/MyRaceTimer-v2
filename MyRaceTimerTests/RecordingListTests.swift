@@ -72,5 +72,5 @@ final class RecordingListTests: XCTestCase {
         XCTAssertFalse(recordingList.isEmpty())
     }
     
-
+    
 }
