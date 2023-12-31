@@ -93,7 +93,7 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $viewModel.presentingRecordingsSheet, content: {
-                EmptyView()
+                RecordingsView(updateRecordings: viewModel.updateRecordings, deactivateTimer: viewModel.deactivateTimer)
             })
             .ignoresSafeArea(.keyboard)
         }

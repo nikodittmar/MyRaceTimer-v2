@@ -184,16 +184,7 @@ import XCTest
     
     func testCreateRecordingListEmptyLoadedList() throws {
         viewModel.createRecordingList()
-        let loadedRecordingList = try? persistenceController.fetchLoadedRecordingList()
-        
-        if let loadedRecordingList = loadedRecordingList {
-            XCTAssertEqual(loadedRecordingList.id, recordingList.id)
-            XCTAssertEqual(loadedRecordingList.name, "")
-            XCTAssertEqual(loadedRecordingList.type, RecordingListType.start)
-            XCTAssertEqual(loadedRecordingList.recordings, [])
-        } else {
-            XCTFail("fetchLoadedRecordingList() returned nill unexpectedly.")
-        }
+        XCTAssertNil(persistenceController.fetchRecordingList(id: recordingList.id))
     }
     
     func testGetOtherRecordingLists() throws {

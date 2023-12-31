@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
-/*
+
 struct RecordingsView: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel: RecordingsViewModel
+    @StateObject var viewModel: RecordingsViewModel = RecordingsViewModel()
     
-    init(updateRecordings: @escaping () -> Void, deactivateTimer: @escaping () -> Void) {
-        _viewModel = StateObject(wrappedValue: RecordingsViewModel(updateRecordings: updateRecordings, deactivateTimer: deactivateTimer))
-    }
+    let updateRecordings: () -> Void
+    let deactivateTimer: () -> Void
     
     var body: some View {
         NavigationStack {
@@ -79,12 +78,18 @@ struct RecordingsView: View {
                     Section(header: Text("Saved Recording List")) {
                         Button("Create New Recording List") {
                             viewModel.createRecordingList()
+                            self.updateRecordings()
+                            self.deactivateTimer()
+                            presentationMode.wrappedValue.dismiss()
                         }
                         .disabled(viewModel.recordingListIsEmpty())
                         Section {
                             List(viewModel.otherRecordingLists()) { recordingList in
                                 Button {
-                                    viewModel.selectRecordingList(recordingList)
+                                    viewModel.selectRecordingList(id: recordingList.id)
+                                    self.updateRecordings()
+                                    self.deactivateTimer()
+                                    presentationMode.wrappedValue.dismiss()
                                 } label: {
                                     HStack {
                                         VStack(alignment: .leading, spacing: 2) {
@@ -99,6 +104,7 @@ struct RecordingsView: View {
                                                 .foregroundColor(Color(UIColor.label))
                                         }
                                         Spacer()
+                                        /*
                                         if recordingList.issueCount != 0 {
                                             HStack {
                                                 Text(String(recordingList.issueCount))
@@ -107,6 +113,7 @@ struct RecordingsView: View {
                                                     .foregroundColor(.yellow)
                                             }
                                         }
+                                         */
                                     }
                                 }
                             }
@@ -118,7 +125,7 @@ struct RecordingsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Close") {
-                        viewModel.dismiss = true
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -135,7 +142,10 @@ struct RecordingsView: View {
             .alert("Are you sure you want to delete this Recording Set?", isPresented: $viewModel.presentingDeleteRecordingListWarning, actions: {
                 Button("No", role: .cancel, action: {})
                 Button("Yes", role: .destructive, action: {
-                    viewModel.deleteRecordingSet()
+                    viewModel.deleteRecordingList()
+                    self.updateRecordings()
+                    self.deactivateTimer()
+                    presentationMode.wrappedValue.dismiss()
                 })
             }, message: {
                 Text("This cannot be undone.")
@@ -145,13 +155,6 @@ struct RecordingsView: View {
                 ActivityViewController(itemsToShare: viewModel.fileToShareURL)
             })
              */
-            .onChange(of: viewModel.dismiss) { dismiss in
-                if dismiss {
-                    presentationMode.wrappedValue.dismiss()
-                }
-            }
         }
     }
 }
-
-*/

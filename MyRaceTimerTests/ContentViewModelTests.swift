@@ -29,7 +29,6 @@ import XCTest
     
     func testUpdateRecordings() throws {
         let expected = [Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000), createdDate: Date(timeIntervalSince1970: 1700000000))]
-        
         XCTAssert(viewModel.recordings.isEmpty)
         
         do {

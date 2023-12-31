@@ -12,20 +12,19 @@ import SwiftUI
     
     let persistenceController: PersistenceController
     
-    let updateRecordings: () -> Void
-    let deactivateTimer: () -> Void
-    
     let recordingListId: UUID?
     
     @Published var name: String
     @Published var type: RecordingListType
     
-    @Published var dismiss: Bool = false
-    
     @Published var presentingDeleteRecordingListWarning: Bool = false
     
-    init(updateRecordings: @escaping () -> Void, deactivateTimer: @escaping () -> Void) {
-        persistenceController = PersistenceController.shared
+    init() {
+        if ProcessInfo.processInfo.arguments.contains("-testing") {
+            persistenceController = PersistenceController.tests
+        } else {
+            persistenceController = PersistenceController.shared
+        }
         if let recordingList = try? persistenceController.fetchLoadedRecordingList() {
             name = recordingList.name
             type = recordingList.type
@@ -35,8 +34,6 @@ import SwiftUI
             type = .start
             recordingListId = nil
         }
-        self.updateRecordings = updateRecordings
-        self.deactivateTimer = deactivateTimer
     }
     
     init(persistenceController: PersistenceController) {
@@ -50,9 +47,6 @@ import SwiftUI
             type = .start
             recordingListId = nil
         }
-        
-        self.updateRecordings = {}
-        self.deactivateTimer = {}
     }
     
     func updateRecordingListName() {
@@ -100,7 +94,16 @@ import SwiftUI
     }
     
     func createRecordingList() {
-        
+        let recordingList = RecordingList(id: UUID(), name: "", createdDate: Date.now, updatedDate: Date.now, type: .start, recordings: [])
+        do {
+            if recordingListIsEmpty(), let recordingListId = recordingListId {
+                try persistenceController.deleteRecordingList(id: recordingListId)
+            }
+            try persistenceController.saveRecordingList(recordingList)
+            try persistenceController.loadRecordingList(id: recordingList.id)
+        } catch {
+            return
+        }
     }
     
     func otherRecordingLists() -> [RecordingList] {
@@ -110,10 +113,26 @@ import SwiftUI
     }
     
     func selectRecordingList(id: UUID) {
-        
+        do {
+            if recordingListIsEmpty(), let recordingListId = recordingListId {
+                try persistenceController.deleteRecordingList(id: recordingListId)
+            }
+            try persistenceController.loadRecordingList(id: id)
+        } catch {
+            return
+        }
     }
     
     func deleteRecordingList() {
-        
+        let recordingList = RecordingList(id: UUID(), name: "", createdDate: Date.now, updatedDate: Date.now, type: .start, recordings: [])
+        do {
+            try persistenceController.saveRecordingList(recordingList)
+            try persistenceController.loadRecordingList(id: recordingList.id)
+            if let recordingListId = recordingListId {
+                try persistenceController.deleteRecordingList(id: recordingListId)
+            }
+        } catch {
+            return
+        }
     }
 }

@@ -12,8 +12,8 @@ public enum RecordingListType: String {
     case finish = "Finish"
 }
 
-public struct RecordingList: Equatable {
-    var id: UUID
+public struct RecordingList: Equatable, Identifiable {
+    public var id: UUID
     var name: String
     var createdDate: Date
     var updatedDate: Date

@@ -25,8 +25,6 @@
 		173EC3782B34EA2D006E476D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3772B34EA2D006E476D /* ContentView.swift */; };
 		173EC37A2B34EA2F006E476D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173EC3792B34EA2F006E476D /* Assets.xcassets */; };
 		173EC37E2B34EA2F006E476D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173EC37D2B34EA2F006E476D /* Preview Assets.xcassets */; };
-		173EC3922B34EA2F006E476D /* MyRaceTimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3912B34EA2F006E476D /* MyRaceTimerUITests.swift */; };
-		173EC3942B34EA2F006E476D /* MyRaceTimerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3932B34EA2F006E476D /* MyRaceTimerUITestsLaunchTests.swift */; };
 		173EC3A22B34EF21006E476D /* MyRaceTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3A02B34EF21006E476D /* MyRaceTimer.xcdatamodeld */; };
 		173EC3A42B34EFAE006E476D /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3A32B34EFAE006E476D /* PersistenceController.swift */; };
 		173EC3E42B36123F006E476D /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173EC3E32B36123F006E476D /* Recording.swift */; };
@@ -76,8 +74,6 @@
 		173EC37D2B34EA2F006E476D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		173EC3832B34EA2F006E476D /* MyRaceTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyRaceTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		173EC38D2B34EA2F006E476D /* MyRaceTimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyRaceTimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		173EC3912B34EA2F006E476D /* MyRaceTimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerUITests.swift; sourceTree = "<group>"; };
-		173EC3932B34EA2F006E476D /* MyRaceTimerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRaceTimerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		173EC3A12B34EF21006E476D /* MyRaceTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyRaceTimer.xcdatamodel; sourceTree = "<group>"; };
 		173EC3A32B34EFAE006E476D /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		173EC3E32B36123F006E476D /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
@@ -206,9 +202,7 @@
 		173EC3902B34EA2F006E476D /* MyRaceTimerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				173EC3912B34EA2F006E476D /* MyRaceTimerUITests.swift */,
 				173E600A2B3C90AE007DC23B /* ContentViewUITests.swift */,
-				173EC3932B34EA2F006E476D /* MyRaceTimerUITestsLaunchTests.swift */,
 			);
 			path = MyRaceTimerUITests;
 			sourceTree = "<group>";
@@ -380,8 +374,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				173E600B2B3C90AE007DC23B /* ContentViewUITests.swift in Sources */,
-				173EC3922B34EA2F006E476D /* MyRaceTimerUITests.swift in Sources */,
-				173EC3942B34EA2F006E476D /* MyRaceTimerUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

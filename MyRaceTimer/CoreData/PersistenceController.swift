@@ -20,6 +20,7 @@ enum PersistenceControllerError: Error {
 class PersistenceController {
 
     static let shared = PersistenceController()
+    static let tests = PersistenceController(inMemory: true)
     
     let container: NSPersistentContainer
     

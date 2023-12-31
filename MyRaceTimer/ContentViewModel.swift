@@ -25,9 +25,12 @@ import SwiftUI
     init(forTesting: Bool = false) {
         if (forTesting || ProcessInfo.processInfo.arguments.contains("-testing")) {
             self.persistenceController = PersistenceController(inMemory: true)
+        } else if ProcessInfo.processInfo.arguments.contains("-testing") {
+            self.persistenceController = PersistenceController.tests
         } else {
             self.persistenceController = PersistenceController.shared
         }
+        
         if ((try? persistenceController.fetchLoadedRecordingList()) == nil) {
             let recordingList = RecordingList(id: UUID(), name: "", createdDate: Date.now, updatedDate: Date.now, type: .start, recordings: [])
             try? persistenceController.saveRecordingList(recordingList)
