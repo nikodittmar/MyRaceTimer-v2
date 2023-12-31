@@ -32,6 +32,7 @@
 		175F5D662B3F5B5300428641 /* RecordingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175F5D652B3F5B5300428641 /* RecordingsView.swift */; };
 		175F5D692B3F5B9200428641 /* RecordingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175F5D682B3F5B9200428641 /* RecordingsViewModel.swift */; };
 		175F5D6B2B3F5F2700428641 /* RecordingListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175F5D6A2B3F5F2700428641 /* RecordingListTests.swift */; };
+		17DA9D532B411F8D00214402 /* RecordingsViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA9D522B411F8D00214402 /* RecordingsViewUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		175F5D652B3F5B5300428641 /* RecordingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsView.swift; sourceTree = "<group>"; };
 		175F5D682B3F5B9200428641 /* RecordingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsViewModel.swift; sourceTree = "<group>"; };
 		175F5D6A2B3F5F2700428641 /* RecordingListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingListTests.swift; sourceTree = "<group>"; };
+		17DA9D522B411F8D00214402 /* RecordingsViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecordingsViewUITests.swift; path = MyRaceTimerUITests/RecordingsViewUITests.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 		173EC3902B34EA2F006E476D /* MyRaceTimerUITests */ = {
 			isa = PBXGroup;
 			children = (
+				17DA9D522B411F8D00214402 /* RecordingsViewUITests.swift */,
 				173E600A2B3C90AE007DC23B /* ContentViewUITests.swift */,
 			);
 			path = MyRaceTimerUITests;
@@ -373,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17DA9D532B411F8D00214402 /* RecordingsViewUITests.swift in Sources */,
 				173E600B2B3C90AE007DC23B /* ContentViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

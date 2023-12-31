@@ -23,7 +23,7 @@ import SwiftUI
     @Published var timerIsActive: Bool = false
     
     init(forTesting: Bool = false) {
-        if (forTesting || ProcessInfo.processInfo.arguments.contains("-testing")) {
+        if (forTesting) {
             self.persistenceController = PersistenceController(inMemory: true)
         } else if ProcessInfo.processInfo.arguments.contains("-testing") {
             self.persistenceController = PersistenceController.tests

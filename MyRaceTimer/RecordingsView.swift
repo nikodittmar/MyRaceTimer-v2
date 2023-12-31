@@ -104,16 +104,14 @@ struct RecordingsView: View {
                                                 .foregroundColor(Color(UIColor.label))
                                         }
                                         Spacer()
-                                        /*
-                                        if recordingList.issueCount != 0 {
+                                        if recordingList.issueCount() != 0 {
                                             HStack {
-                                                Text(String(recordingList.issueCount))
+                                                Text(String(recordingList.issueCount()))
                                                     .foregroundColor(Color(UIColor.label))
                                                 Image(systemName: "exclamationmark.triangle.fill")
                                                     .foregroundColor(.yellow)
                                             }
                                         }
-                                         */
                                     }
                                 }
                             }
