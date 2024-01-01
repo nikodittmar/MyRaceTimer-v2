@@ -72,5 +72,28 @@ final class RecordingListTests: XCTestCase {
         XCTAssertFalse(recordingList.isEmpty())
     }
     
+    func testFileNameStart() throws {
+        let recordingList = RecordingList(id: UUID(), name: "test", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .start, recordings: [])
+        let fileName = recordingList.fileName()
+        
+        XCTAssertEqual(fileName, "test-Start")
+    }
     
+    func testFileNameFinish() throws {
+        let recordingList = RecordingList(id: UUID(), name: "Recording", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .finish, recordings: [])
+        let fileName = recordingList.fileName()
+        
+        XCTAssertEqual(fileName, "Recording-Finish")
+    }
+    
+    func testCSVString() throws {
+        let recordings = [Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000.52), createdDate: Date(timeIntervalSince1970: 1700000000.52)), Recording(id: UUID(), plate: "456", timestamp: Date(timeIntervalSince1970: 1700000021.33), createdDate: Date(timeIntervalSince1970: 1700000021.33)), Recording(id: UUID(), plate: "789", timestamp: Date(timeIntervalSince1970: 1700000045.91), createdDate: Date(timeIntervalSince1970: 1700000045.91))]
+        let recordingList = RecordingList(id: UUID(), name: "test", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .start, recordings: recordings)
+        
+        let csvString = recordingList.csvString()
+    
+        let expected = "123,11-14-2023 14:13:20.52\n456,11-14-2023 14:13:41.33\n789,11-14-2023 14:14:05.91\n"
+        
+        XCTAssertEqual(csvString, expected)
+    }
 }

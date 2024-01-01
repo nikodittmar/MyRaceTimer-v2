@@ -63,9 +63,7 @@ struct RecordingsView: View {
                     }
                     Section {
                         Button("Export as CSV") {
-                            /*
-                            viewModel.exportSelectedRecordingSetCSV()
-                             */
+                            viewModel.exportCSVFile()
                         }
                         .disabled(viewModel.recordingListIsEmpty())
                     }
@@ -148,11 +146,9 @@ struct RecordingsView: View {
             }, message: {
                 Text("This cannot be undone.")
             })
-            /*
             .sheet(isPresented: $viewModel.presentingShareSheet, content: {
                 ActivityViewController(itemsToShare: viewModel.fileToShareURL)
             })
-             */
         }
     }
 }

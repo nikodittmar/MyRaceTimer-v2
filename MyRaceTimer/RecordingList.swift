@@ -7,11 +7,6 @@
 
 import Foundation
 
-public enum RecordingListType: String {
-    case start = "Start"
-    case finish = "Finish"
-}
-
 public struct RecordingList: Equatable, Identifiable {
     public var id: UUID
     var name: String
@@ -69,4 +64,30 @@ public struct RecordingList: Equatable, Identifiable {
         if hasMissingTimestamps() { count += 1 }
         return count
     }
+    
+    func csvString() -> String {
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy H:mm:ss.SS"
+        
+        var csvString: String = ""
+        
+        for recording in recordings {
+            let timeStampString = recording.timestamp == Date(timeIntervalSince1970: 0.0) ? "" : dateFormatter.string(from: recording.timestamp)
+            
+            csvString.append("\(recording.plate),\(timeStampString)\n")
+        }
+        
+        return csvString
+    }
+    
+    func fileName() -> String {
+        return "\(name)-\(type.rawValue.capitalized)"
+    }
 }
+
+public enum RecordingListType: String {
+    case start = "Start"
+    case finish = "Finish"
+}
+
+

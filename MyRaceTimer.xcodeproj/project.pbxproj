@@ -33,6 +33,7 @@
 		175F5D692B3F5B9200428641 /* RecordingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175F5D682B3F5B9200428641 /* RecordingsViewModel.swift */; };
 		175F5D6B2B3F5F2700428641 /* RecordingListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175F5D6A2B3F5F2700428641 /* RecordingListTests.swift */; };
 		17DA9D532B411F8D00214402 /* RecordingsViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA9D522B411F8D00214402 /* RecordingsViewUITests.swift */; };
+		17DA9D562B42532A00214402 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DA9D552B42532A00214402 /* ActivityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,8 @@
 		175F5D682B3F5B9200428641 /* RecordingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsViewModel.swift; sourceTree = "<group>"; };
 		175F5D6A2B3F5F2700428641 /* RecordingListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingListTests.swift; sourceTree = "<group>"; };
 		17DA9D522B411F8D00214402 /* RecordingsViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecordingsViewUITests.swift; path = MyRaceTimerUITests/RecordingsViewUITests.swift; sourceTree = SOURCE_ROOT; };
+		17DA9D542B41E2E100214402 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		17DA9D552B42532A00214402 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,7 @@
 		173EC3742B34EA2D006E476D /* MyRaceTimer */ = {
 			isa = PBXGroup;
 			children = (
+				17DA9D542B41E2E100214402 /* Info.plist */,
 				173EC3752B34EA2D006E476D /* MyRaceTimerApp.swift */,
 				173EC3772B34EA2D006E476D /* ContentView.swift */,
 				173E5FFA2B39DC03007DC23B /* ContentViewModel.swift */,
@@ -174,6 +178,7 @@
 				173E5FE52B37E894007DC23B /* CoreData */,
 				173EC3E32B36123F006E476D /* Recording.swift */,
 				173E5FE72B37E9E3007DC23B /* RecordingList.swift */,
+				17DA9D552B42532A00214402 /* ActivityViewController.swift */,
 				173EC3792B34EA2F006E476D /* Assets.xcassets */,
 				173EC37B2B34EA2F006E476D /* MyRaceTimer.entitlements */,
 				173EC37C2B34EA2F006E476D /* Preview Content */,
@@ -343,6 +348,7 @@
 				173EC3E42B36123F006E476D /* Recording.swift in Sources */,
 				173E5FF82B395498007DC23B /* RecordingListModel+CoreDataClass.swift in Sources */,
 				173E60032B3A934F007DC23B /* NumberPadView.swift in Sources */,
+				17DA9D562B42532A00214402 /* ActivityViewController.swift in Sources */,
 				173E5FFF2B3A4A30007DC23B /* RecordingsListView.swift in Sources */,
 				175F5D692B3F5B9200428641 /* RecordingsViewModel.swift in Sources */,
 				173EC3782B34EA2D006E476D /* ContentView.swift in Sources */,
@@ -524,6 +530,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyRaceTimer/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -563,6 +570,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyRaceTimer/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

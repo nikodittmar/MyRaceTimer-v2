@@ -18,6 +18,9 @@ import SwiftUI
     @Published var type: RecordingListType
     
     @Published var presentingDeleteRecordingListWarning: Bool = false
+    @Published var presentingShareSheet: Bool = false
+    
+    @Published var fileToShareURL: [URL] = []
     
     init() {
         if ProcessInfo.processInfo.arguments.contains("-testing") {
@@ -133,6 +136,23 @@ import SwiftUI
             }
         } catch {
             return
+        }
+    }
+    
+    func exportCSVFile() {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        if let selectedRecordingList = try? persistenceController.fetchLoadedRecordingList() {
+            let data = selectedRecordingList.csvString()
+            let fileName = selectedRecordingList.fileName()
+            let fileURL = paths[0].appendingPathComponent(fileName, conformingTo: .commaSeparatedText)
+            try? FileManager.default.removeItem(at: fileURL)
+            do {
+                try data.write(to: fileURL, atomically: true, encoding: .utf8)
+                fileToShareURL = [fileURL]
+                presentingShareSheet = true
+            } catch {
+                return
+            }
         }
     }
 }
