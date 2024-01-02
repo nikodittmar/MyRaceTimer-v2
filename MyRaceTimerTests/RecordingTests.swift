@@ -70,4 +70,22 @@ final class RecordingTests: XCTestCase {
         
         XCTAssertFalse(recordings[0].hasDuplicatePlateIn(recordings))
     }
+    
+    func testRecordingCodable() throws {
+        let recording = Recording(id: UUID(), plate: "test", timestamp: Date(timeIntervalSince1970: 1700000000), createdDate: Date(timeIntervalSince1970: 1700000000))
+        guard let recordingJSON = try? JSONEncoder().encode(recording) else {
+            XCTFail("JSON Encoder threw and error unexpectedly.")
+            return
+        }
+        
+        guard let decodedRecording = try? JSONDecoder().decode(Recording.self,from: recordingJSON) else {
+            XCTFail("JSON Decoder threw and error unexpectedly.")
+            return
+        }
+        
+        XCTAssertNotEqual(decodedRecording.id, recording.id)
+        XCTAssertEqual(decodedRecording.plate, recording.plate)
+        XCTAssertEqual(decodedRecording.timestamp, recording.timestamp)
+        XCTAssertEqual(decodedRecording.createdDate, recording.createdDate)
+    }
 }

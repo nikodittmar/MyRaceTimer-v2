@@ -155,4 +155,22 @@ import SwiftUI
             }
         }
     }
+    
+    func exportRecordingList() {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        if let selectedRecordingList = try? persistenceController.fetchLoadedRecordingList() {
+            if let data = try? JSONEncoder().encode(selectedRecordingList) {
+                let fileName = selectedRecordingList.fileName()
+                let fileURL = paths[0].appendingPathComponent(fileName, conformingTo: .recordingList)
+                try? FileManager.default.removeItem(at: fileURL)
+                do {
+                    try data.write(to: fileURL)
+                    fileToShareURL = [fileURL]
+                    presentingShareSheet = true
+                } catch {
+                    return
+                }
+            }
+        }
+    }
 }

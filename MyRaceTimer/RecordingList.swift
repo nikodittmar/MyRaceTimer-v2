@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 
 public struct RecordingList: Equatable, Identifiable {
     public var id: UUID
@@ -85,9 +86,32 @@ public struct RecordingList: Equatable, Identifiable {
     }
 }
 
-public enum RecordingListType: String {
+extension RecordingList: Codable {
+    enum CodingKeys: String, CodingKey {
+        case name
+        case createdDate
+        case updatedDate
+        case type
+        case recordings
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = UUID()
+        name = try values.decode(String.self, forKey: .name)
+        createdDate = try values.decode(Date.self, forKey: .createdDate)
+        updatedDate = try values.decode(Date.self, forKey: .updatedDate)
+        type = try values.decode(RecordingListType.self, forKey: .type)
+        recordings = try values.decode(Array<Recording>.self, forKey: .recordings)
+    }
+}
+
+public enum RecordingListType: String, Codable {
     case start = "Start"
     case finish = "Finish"
 }
 
+extension UTType {
+    static var recordingList: UTType { UTType(exportedAs: "com.nikodittmar.MyRaceTimer.recordinglist") }
+}
 

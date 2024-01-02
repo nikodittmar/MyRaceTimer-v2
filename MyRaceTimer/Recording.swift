@@ -48,3 +48,19 @@ public struct Recording: Equatable, Identifiable {
         return count > 1
     }
 }
+
+extension Recording: Codable {
+    enum CodingKeys: String, CodingKey {
+        case plate
+        case timestamp
+        case createdDate
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = UUID()
+        plate = try values.decode(String.self, forKey: .plate)
+        timestamp = try values.decode(Date.self, forKey: .timestamp)
+        createdDate = try values.decode(Date.self, forKey: .createdDate)
+    }
+}

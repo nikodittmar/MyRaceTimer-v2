@@ -126,9 +126,7 @@ struct RecordingsView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        /*
-                        viewModel.exportSelectedRecordingSet()
-                         */
+                        viewModel.exportRecordingList()
                     } label: {
                         Image(systemName: "square.and.arrow.up")
                     }

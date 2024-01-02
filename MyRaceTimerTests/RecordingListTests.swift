@@ -96,4 +96,25 @@ final class RecordingListTests: XCTestCase {
         
         XCTAssertEqual(csvString, expected)
     }
+    
+    func testRecordingListCodable() throws {
+        let recordings = [Recording(id: UUID(), plate: "123", timestamp: Date(timeIntervalSince1970: 1700000000.52), createdDate: Date(timeIntervalSince1970: 1700000000.52)), Recording(id: UUID(), plate: "456", timestamp: Date(timeIntervalSince1970: 1700000021.33), createdDate: Date(timeIntervalSince1970: 1700000021.33)), Recording(id: UUID(), plate: "789", timestamp: Date(timeIntervalSince1970: 1700000045.91), createdDate: Date(timeIntervalSince1970: 1700000045.91))]
+        let recordingList = RecordingList(id: UUID(), name: "test", createdDate: Date(timeIntervalSince1970: 1700000000), updatedDate: Date(timeIntervalSince1970: 1700000000), type: .start, recordings: recordings)
+        
+        guard let recordingListJSON = try? JSONEncoder().encode(recordingList) else {
+            XCTFail("JSON Encoder threw and error unexpectedly.")
+            return
+        }
+        
+        guard let decodedRecordingList = try? JSONDecoder().decode(RecordingList.self,from: recordingListJSON) else {
+            XCTFail("JSON Decoder threw and error unexpectedly.")
+            return
+        }
+        
+        XCTAssertNotEqual(decodedRecordingList.id, recordingList.id)
+        XCTAssertEqual(decodedRecordingList.name, recordingList.name)
+        XCTAssertEqual(decodedRecordingList.updatedDate, recordingList.updatedDate)
+        XCTAssertEqual(decodedRecordingList.createdDate, recordingList.createdDate)
+        XCTAssertEqual(decodedRecordingList.recordings.count, recordingList.recordings.count)
+    }
 }
