@@ -15,6 +15,9 @@ import SwiftUI
     @Published var selectedRecordingId: UUID? = nil
     
     @Published var presentingRecordingsSheet: Bool = false
+        
+    @Published var presentingImportErrorWarning: Bool = false
+    @Published var presentingImportSuccessModal: Bool = false
     
     let timer = Timer.publish(every: 1, tolerance: 0.5, on: .main, in: .common).autoconnect()
     var secondsSinceLastRecording: Double = 0.0
@@ -144,5 +147,47 @@ import SwiftUI
     
     func deactivateTimer() {
         timerIsActive = false
+    }
+    
+    // MARK: Recording List Importer
+    
+    private func fetchData(url: URL) -> Data? {
+        do {
+            return try Data(contentsOf: url)
+        } catch {
+            if url.startAccessingSecurityScopedResource() {
+                do {
+                    let data = try Data(contentsOf: url)
+                    url.stopAccessingSecurityScopedResource()
+                    return data
+                } catch {
+                    url.stopAccessingSecurityScopedResource()
+                    return nil
+                }
+            } else {
+                url.stopAccessingSecurityScopedResource()
+                return nil
+            }
+        }
+    }
+    
+    func handleImportRecordingList(url: URL) {
+        guard let data = fetchData(url: url) else {
+            presentingImportErrorWarning = true
+            return
+        }
+        
+        do {
+            let recordingList = try JSONDecoder().decode(RecordingList.self, from: data)
+            print(recordingList)
+            try persistenceController.saveRecordingList(recordingList)
+            try persistenceController.loadRecordingList(id: recordingList.id)
+            updateRecordings()
+            presentingRecordingsSheet = false
+            presentingImportSuccessModal = true
+        } catch {
+            presentingImportErrorWarning = true
+            return
+        }
     }
 }

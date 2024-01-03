@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct MyRaceTimerApp: App {
+    @StateObject var viewModel: ContentViewModel = ContentViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: viewModel)
+                .onOpenURL(perform: { url in
+                    viewModel.handleImportRecordingList(url: url)
+                })
         }
     }
 }

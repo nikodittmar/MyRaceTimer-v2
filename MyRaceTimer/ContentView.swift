@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var viewModel: ContentViewModel = ContentViewModel()
+    @ObservedObject var viewModel: ContentViewModel
     
     var body: some View {
         NavigationStack {
@@ -94,6 +94,12 @@ struct ContentView: View {
             }
             .sheet(isPresented: $viewModel.presentingRecordingsSheet, content: {
                 RecordingsView(updateRecordings: viewModel.updateRecordings, deactivateTimer: viewModel.deactivateTimer)
+            })
+            .alert("Successfully Imported Recording Set!", isPresented: $viewModel.presentingImportSuccessModal, actions: {
+                Button("Ok", role: .cancel, action: {})
+            })
+            .alert("Error Importing Recording Set!", isPresented: $viewModel.presentingImportErrorWarning, actions: {
+                Button("Ok", role: .cancel, action: {})
             })
             .ignoresSafeArea(.keyboard)
         }
