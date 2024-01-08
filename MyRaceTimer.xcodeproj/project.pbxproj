@@ -54,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1712FBF02B4BF227009599DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		173E5FDF2B37E881007DC23B /* RecordingModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		173E5FE02B37E881007DC23B /* RecordingModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		173E5FE72B37E9E3007DC23B /* RecordingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingList.swift; sourceTree = "<group>"; };
@@ -147,6 +148,7 @@
 		173EC3692B34EA2D006E476D = {
 			isa = PBXGroup;
 			children = (
+				1712FBF02B4BF227009599DD /* README.md */,
 				173EC3742B34EA2D006E476D /* MyRaceTimer */,
 				173EC3862B34EA2F006E476D /* MyRaceTimerTests */,
 				173EC3902B34EA2F006E476D /* MyRaceTimerUITests */,
