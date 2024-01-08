@@ -1,12 +1,12 @@
 <div align="center">
     <picture>
-        <img alt="mockup" src="./READMEImages/MRTMockup.png" width="260">
+        <img alt="mockup" src="https://github.com/nikodittmar/MyRaceTimer-v2/assets/77522904/1feb3f7d-4abc-47d0-b588-754015217c04" width="260">
     </picture>
     <br>
     <br>
     <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="./READMEImages/MRTLogoWhite.png">
-        <source media="(prefers-color-scheme: light)" srcset="./READMEImages/MRTLogo.png">
+        <source media="(prefers-color-scheme: dark)" srcset="https://github.com/nikodittmar/MyRaceTimer-v2/assets/77522904/c8f12afc-84ed-45f2-badd-b9a53e345caa">
+        <source media="(prefers-color-scheme: light)" srcset="https://github.com/nikodittmar/MyRaceTimer-v2/assets/77522904/751d18ed-02f5-4ad1-87a7-49f8054d9060">
         <img alt="Logo" src="./READMEImages/MRTLogoWhite.png" width="320">
     </picture>
 </div>
@@ -27,7 +27,7 @@ Even for small events with few racers, the amount of calculations and steps requ
 
 Luckily, MyRaceTimer combines the best of both worlds for chip and manual timing. As an iPhone app, MyRaceTimer has the same computational accuracy of chip timing. Also, because the recordings are not on paper and are “born digital”, the app can automatically calculate the race results with perfect precision solving the issue of manual timing. Finally, because everyone has a phone, MyRaceTimer eliminates the need for any specialized and expensive equipment. 
 
-| ![MyRaceTimerComparison](https://github.com/nikodittmar/MyRaceTimer/assets/77522904/0bc4c48c-e190-4330-8d9d-6d4bfb00f277) | 
+| ![MyRaceTimerComparison](https://github.com/nikodittmar/MyRaceTimer-v2/assets/77522904/623c1618-53fc-429b-aab2-5005b6605689) | 
 |:--:| 
 | *MyRaceTimer compared to Chip Timing and Manual Timing* |
 
@@ -36,7 +36,7 @@ To begin, each racer should be assigned a number. This number should be printed 
 
 For each stage, there must be two phones running seperate instaces of MyRaceTimer. One phone will be designated as the stage start and the other will be the stage finish. The stage start phone will be responsible for recording the racer start times while the stage finish phone will be responsible for recording the racer finish times. During the timing of the race, both apps are running independently and are not connected to each other in any way. Due to this face, MyRaceTimer is unable to provide live results. Unless the stage start location is the same as the stage finish location, seperate timing staff will need to operate each instance of the app. Below is a diagram of the MyRaceTimer timing setup for a single stage. 
 
-| ![MRTDiagram](https://github.com/nikodittmar/MyRaceTimer/assets/77522904/c820cf90-0455-4c1f-94f0-841387f6654b) | 
+| ![MRTDiagram](https://github.com/nikodittmar/MyRaceTimer-v2/assets/77522904/9d61bee8-4670-4d5e-b283-25db84730594) | 
 |:--:| 
 | *MyRaceTimer Stage Diagram* |
 
@@ -61,4 +61,7 @@ Note: Record time can be pressed multiple times without entering in the last rec
 
 ## Timing Screen Diagram
 
-![MyRaceTimerTimingScreen](https://github.com/nikodittmar/MyRaceTimer/assets/77522904/36e50a46-dcb3-40c1-b587-357a1e8d5ba9)
+![MyRaceTimerTimingScreen](https://github.com/nikodittmar/MyRaceTimer-v2/assets/77522904/7249a4fd-c873-49a0-9976-49577442b4d0)
+
+
+Note: MyRaceTimer-v2 is the same as app as MyRaceTimer, however it was rebuilt from the ground up using test driven development.
