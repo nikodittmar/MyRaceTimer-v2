@@ -64,4 +64,4 @@ Note: Record time can be pressed multiple times without entering in the last rec
 ![MyRaceTimerTimingScreen](https://github.com/nikodittmar/MyRaceTimer-v2/assets/77522904/7249a4fd-c873-49a0-9976-49577442b4d0)
 
 
-Note: MyRaceTimer-v2 is the same as app as MyRaceTimer, however it was rebuilt from the ground up using test driven development.
+Note: MyRaceTimer-v2 is the same as app as MyRaceTimer, however it was rebuilt from the ground up using test driven development and MVVM architecture.
