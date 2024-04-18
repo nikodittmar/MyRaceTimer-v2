@@ -32,7 +32,7 @@ Luckily, MyRaceTimer combines the best of both worlds for chip and manual timing
 | *MyRaceTimer compared to Chip Timing and Manual Timing* |
 
 ## Usage
-To begin, each racer should be assigned a number. This number should be printed out onto a number plate that is affixed to the bike and that is clearly visible. Number plates can be created at any local print shop or special ordered from online retailers such as Race Result or Memory Pilot. Due to the nature of mountain biking, it is a good idea to make the number plates out of a water and mud resistant material.
+To begin, each racer should be assigned a number. This number should be printed out onto a number plate that is affixed to the bike and that is clearly visible. Number plates can be created at any local print shop or special ordered from online retailers. Due to the nature of mountain biking, it is a good idea to make the number plates out of a water and mud resistant material.
 
 For each stage, there must be two phones running seperate instaces of MyRaceTimer. One phone will be designated as the stage start and the other will be the stage finish. The stage start phone will be responsible for recording the racer start times while the stage finish phone will be responsible for recording the racer finish times. During the timing of the race, both apps are running independently and are not connected to each other in any way. Due to this fact, MyRaceTimer is unable to provide live results. Unless the stage start location is the same as the stage finish location, seperate timing staff will need to operate each instance of the app. Below is a diagram of the MyRaceTimer timing setup for a single stage. 
 
